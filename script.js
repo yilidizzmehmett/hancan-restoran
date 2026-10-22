@@ -1,23 +1,139 @@
-const PHONE="905451546507";
-const menu=[
-{id:1,name:"Tavuk Döner Dürüm",category:"Döner",price:160,emoji:"🌯",desc:"Taze lavaş, tavuk döner ve günlük garnitür."},
-{id:2,name:"Et Döner Dürüm",category:"Döner",price:240,emoji:"🌯",desc:"Usta işi et döner ve lezzetli eşlikçiler."},
-{id:3,name:"Tavuk Döner Porsiyon",category:"Döner",price:220,emoji:"🍽️",desc:"Pilav ve garnitür ile doyurucu porsiyon."},
-{id:4,name:"Adana Kebap",category:"Kebap",price:320,emoji:"🍢",desc:"Izgaradan sıcak, yanında garnitürle."},
-{id:5,name:"Urfa Kebap",category:"Kebap",price:320,emoji:"🍢",desc:"Baharat dengesiyle hazırlanan klasik lezzet."},
-{id:6,name:"Tavuk Şiş",category:"Izgara",price:260,emoji:"🍗",desc:"Marine edilmiş tavuk şiş, ızgaradan sofranıza."},
-{id:7,name:"Tavuk Kanat",category:"Izgara",price:280,emoji:"🍗",desc:"Izgara tavuk kanat ve garnitür."},
-{id:8,name:"Patates Kızartması",category:"Yan Ürün",price:80,emoji:"🍟",desc:"Sıcak ve çıtır patates kızartması."},
-{id:9,name:"Ayran",category:"İçecek",price:30,emoji:"🥛",desc:"Soğuk ayran."},
-{id:10,name:"Kutu İçecek",category:"İçecek",price:50,emoji:"🥤",desc:"Soğuk kutu içecek."}];
-const cats=["Tümü",...new Set(menu.map(p=>p.category))];let selected="Tümü",cart={};
-const fmt=n=>new Intl.NumberFormat("tr-TR",{style:"currency",currency:"TRY",maximumFractionDigits:0}).format(n);
-const total=()=>Object.entries(cart).reduce((s,[id,q])=>s+menu.find(p=>p.id===+id).price*q,0);
-const count=()=>Object.values(cart).reduce((s,q)=>s+q,0);
-function renderCats(){document.querySelector("#categories").innerHTML=cats.map(c=>`<button class="category ${selected===c?"active":""}" data-cat="${c}">${c}</button>`).join("");document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{selected=b.dataset.cat;renderCats();renderProducts()})}
-function renderProducts(){document.querySelector("#products").innerHTML=menu.filter(p=>selected==="Tümü"||p.category===selected).map(p=>`<article class="card"><div class="visual">${p.emoji}</div><div class="body"><h3>${p.name}</h3><p>${p.desc}</p><div class="bottom"><span>${fmt(p.price)}</span><button class="add" data-add="${p.id}" aria-label="Sepete ekle">+</button></div></div></article>`).join("");document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const id=+b.dataset.add;cart[id]=(cart[id]||0)+1;renderFab()})}
-function renderFab(){document.querySelector("#cartbar").hidden=!count();document.querySelector("#count").textContent=count();document.querySelector("#total").textContent=fmt(total())}
-function renderCart(){const target=document.querySelector("#cartitems"),items=Object.entries(cart).filter(([,q])=>q>0);if(!items.length){target.innerHTML="<p>Sepet boş.</p>";return}target.innerHTML=items.map(([id,q])=>{const p=menu.find(x=>x.id===+id);return `<div class="cartline"><div><b>${p.name}</b><br><small>${fmt(p.price)} / adet</small></div><div class="qty"><button data-change="${id}" data-d="-1">−</button><b>${q}</b><button data-change="${id}" data-d="1">+</button></div></div>`}).join("")+`<div class="sum"><span>Toplam</span><span>${fmt(total())}</span></div>`;target.querySelectorAll("[data-change]").forEach(b=>b.onclick=()=>{const id=+b.dataset.change;cart[id]=(cart[id]||0)+ +b.dataset.d;if(cart[id]<=0)delete cart[id];renderCart();renderFab()})}
-document.querySelector("#openCart").onclick=()=>{renderCart();document.querySelector("#cart").showModal()};
-document.querySelector("#checkout").onsubmit=e=>{e.preventDefault();if(!count()){alert("Önce ürün ekleyin.");return}const f=new FormData(e.currentTarget),lines=Object.entries(cart).map(([id,q])=>{const p=menu.find(x=>x.id===+id);return `• ${p.name} x${q} — ${fmt(p.price*q)}`}).join("\n");const msg=`Merhaba Hancan Kebap Döner, sipariş vermek istiyorum.\n\n${lines}\n\nToplam: ${fmt(total())}\nAd Soyad: ${f.get("name")}\nTelefon: ${f.get("phone")}\nTeslimat: ${f.get("delivery")}\nAdres/Not: ${f.get("address")||"-"}\nÖdeme: ${f.get("payment")}`;window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`,"_blank")};
-document.querySelector("#year").textContent=new Date().getFullYear();renderCats();renderProducts();
+const products = [
+  {id:1,name:"Tavuk Döner Dürüm",category:"Döner",price:180,desc:"Taze lavaşta tavuk döner"},
+  {id:2,name:"Et Döner Dürüm",category:"Döner",price:250,desc:"Lezzetli et döner dürüm"},
+  {id:3,name:"Tavuk Döner Porsiyon",category:"Döner",price:250,desc:"Pilav ve garnitür ile"},
+  {id:4,name:"Adana Kebap",category:"Kebap",price:350,desc:"Usta işi közde kebap"},
+  {id:5,name:"Urfa Kebap",category:"Kebap",price:350,desc:"Izgarada özenle hazırlanır"},
+  {id:6,name:"Tavuk Şiş",category:"Izgara",price:300,desc:"Izgarada tavuk şiş"},
+  {id:7,name:"Tavuk Kanat",category:"Izgara",price:350,desc:"Izgarada tavuk kanat"},
+  {id:8,name:"Patates Kızartması",category:"Yan Ürünler",price:100,desc:"Çıtır patates"},
+  {id:9,name:"Ayran",category:"İçecekler",price:35,desc:"Soğuk ayran"},
+  {id:10,name:"Kola",category:"İçecekler",price:60,desc:"Soğuk içecek"}
+];
+
+let cart = [];
+let activeCategory = "Tümü";
+
+const money = n => n.toLocaleString("tr-TR") + " ₺";
+const categories = ["Tümü", ...new Set(products.map(p => p.category))];
+
+const categoryBox = document.getElementById("categories");
+const productBox = document.getElementById("products");
+
+function renderCategories() {
+  categoryBox.innerHTML = categories.map(c =>
+    `<button class="${c === activeCategory ? "gold" : ""}" data-cat="${c}">${c}</button>`
+  ).join("");
+
+  categoryBox.querySelectorAll("button").forEach(button => {
+    button.onclick = () => {
+      activeCategory = button.dataset.cat;
+      renderCategories();
+      renderProducts();
+    };
+  });
+}
+
+function renderProducts() {
+  const list = activeCategory === "Tümü"
+    ? products
+    : products.filter(p => p.category === activeCategory);
+
+  productBox.innerHTML = list.map(p => `
+    <article class="product">
+      <div class="product-image">🍽️</div>
+      <p class="eyebrow">${p.category}</p>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="product-bottom">
+        <strong>${money(p.price)}</strong>
+        <button class="gold" data-add="${p.id}">+ Ekle</button>
+      </div>
+    </article>
+  `).join("");
+
+  productBox.querySelectorAll("[data-add]").forEach(button => {
+    button.onclick = () => {
+      const p = products.find(x => x.id === Number(button.dataset.add));
+      const item = cart.find(x => x.id === p.id);
+      if (item) item.qty++;
+      else cart.push({...p, qty:1});
+      renderCart();
+    };
+  });
+}
+
+function renderCart() {
+  const count = cart.reduce((s, p) => s + p.qty, 0);
+  const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
+
+  document.getElementById("cartbar").hidden = count === 0;
+  document.getElementById("count").textContent = count;
+  document.getElementById("total").textContent = money(total);
+
+  document.getElementById("cartitems").innerHTML = cart.length
+    ? cart.map(p => `
+      <div class="cartitem">
+        <span>${p.name} × ${p.qty}</span>
+        <strong>${money(p.price * p.qty)}</strong>
+        <button type="button" data-remove="${p.id}">−</button>
+        <button type="button" data-plus="${p.id}">+</button>
+      </div>
+    `).join("")
+    : "<p>Sepetin boş.</p>";
+
+  document.querySelectorAll("[data-remove]").forEach(b => {
+    b.onclick = () => {
+      const item = cart.find(p => p.id === Number(b.dataset.remove));
+      if (item.qty > 1) item.qty--;
+      else cart = cart.filter(p => p.id !== item.id);
+      renderCart();
+    };
+  });
+
+  document.querySelectorAll("[data-plus]").forEach(b => {
+    b.onclick = () => {
+      cart.find(p => p.id === Number(b.dataset.plus)).qty++;
+      renderCart();
+    };
+  });
+}
+
+document.getElementById("openCart").onclick = () =>
+  document.getElementById("cart").showModal();
+
+document.getElementById("checkout").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!cart.length) return alert("Sepetiniz boş.");
+
+  const f = new FormData(e.currentTarget);
+  const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
+
+  const lines = cart.map(p =>
+    `${p.name} x${p.qty} — ${money(p.price * p.qty)}`
+  ).join("\n");
+
+  const message = [
+    "HANCAN KEBAP DÖNER - SİPARİŞ",
+    `Ad Soyad: ${f.get("name")}`,
+    `Telefon: ${f.get("phone")}`,
+    `Teslimat: ${f.get("delivery")}`,
+    `Adres / Not: ${f.get("address") || "-"}`,
+    `Ödeme: ${f.get("payment")}`,
+    "",
+    lines,
+    "",
+    `TOPLAM: ${money(total)}`
+  ].join("\n");
+
+  window.open(
+    "https://wa.me/905451546507?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderCategories();
+renderProducts();
+renderCart();
