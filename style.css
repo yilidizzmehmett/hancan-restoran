@@ -7,6 +7,20 @@
   --muted: #b7b0a3;
   --line: #373126;
 }
+
+body {
+  background: #111111 !important;
+  color: #f6f1e7 !important;
+}
+
+:root {
+  --bg: #111111;
+  --panel: #1b1b1b;
+  --gold: #d6ad55;
+  --text: #f6f1e7;
+  --muted: #b7b0a3;
+  --line: #373126;
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
