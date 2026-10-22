@@ -1,106 +1,102 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
-<title>Hancan Kebap Döner</title>
-<style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#111;color:#f7f1e5;font:16px Arial,sans-serif;line-height:1.6}
-a{color:#d6b15e;text-decoration:none}
-header,footer{padding:22px 5%;background:#090909;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:12px;color:#d6b15e;font-weight:bold;letter-spacing:2px}
-.brand b{width:48px;height:48px;border:2px solid #d6b15e;border-radius:50%;display:grid;place-items:center;font-size:27px}
-.brand small{display:block;font-size:10px}
-main{max-width:1100px;margin:auto;padding:20px}
-section{padding:40px 0;border-bottom:1px solid #393020}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;min-height:340px}
-h1{font-size:clamp(36px,6vw,62px);line-height:1.15}
-h1 em{color:#d6b15e;font-style:normal}
-h2{text-align:center;font-size:30px}
-.eyebrow{color:#d6b15e;letter-spacing:3px;font-size:12px;font-weight:bold}
-.gold{display:inline-block;background:#d6b15e;color:#16120a;border:0;border-radius:7px;padding:12px 18px;font-weight:bold;cursor:pointer}
-.food{background:radial-gradient(ellipse,#3a2d18,#171717);border:1px solid #574323;border-radius:20px;min-height:220px;display:grid;place-content:center;text-align:center;font-size:85px}
-.food small{display:block;font-size:11px;color:#d6b15e}
-.info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.info div,.product{background:#1b1b1b;border:1px solid #3c3220;border-radius:12px;padding:16px}
-.info small{display:block;color:#aaa}
-.note,.product p{color:#aaa;font-size:14px}
-.note{text-align:center}
-#categories{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0}
-#categories button{padding:9px 14px;border-radius:20px;border:1px solid #d6b15e;background:#1b1b1b;color:#eee}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:22px}
-.product-image{background:#292318;border-radius:8px;text-align:center;padding:15px;font-size:48px}
-.product h3{color:#f7f1e5}
-.product-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.product-bottom strong{color:#d6b15e;font-size:19px}
-.product button{padding:9px 12px}
-.banner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.banner h2{text-align:left}
-footer{margin-top:25px;color:#aaa}
-footer p{width:100%;text-align:center}
-#cartbar{position:fixed;bottom:12px;left:12px;right:12px;z-index:5}
-#openCart{width:100%;padding:15px;background:#d6b15e;color:#111;border:0;border-radius:10px;font-weight:bold}
-dialog{background:#181818;color:white;border:1px solid #574323;border-radius:12px;width:min(95%,550px);max-height:90vh;overflow:auto}
-dialog::backdrop{background:#000b}
-.dialogtop{display:flex;align-items:center;justify-content:space-between}
-.dialogtop button{background:none;color:white;border:0;font-size:28px}
-.cartitem{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid #393020}
-.cartitem span{flex:1}
-.cartitem button{background:#333;color:white;border:0;padding:7px 12px}
-form label{display:grid;gap:5px;margin:10px 0}
-input,textarea,select{width:100%;padding:11px;background:#1b1b1b;border:1px solid #51462e;border-radius:6px;color:white;font:inherit}
-.send{width:100%;margin-top:10px}
-@media(max-width:650px){header,footer{justify-content:center;text-align:center}.hero{grid-template-columns:1fr}.food{min-height:150px;font-size:65px}.info{grid-template-columns:1fr}.banner{display:block}.banner .gold{margin-top:10px}}
-</style>
+<title>Hancan Kebap Döner | Antalya</title>
+<meta name="description" content="Hancan Kebap Döner - Kebap, döner ve ızgara lezzetleri.">
+<link rel="stylesheet" href="stil.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-<header>
-<a class="brand" href="#"><b>H</b><span>HANCAN<small>KEBAP &amp; DÖNER</small></span></a>
-<a href="tel:+905451546507">☎ 0545 154 65 07</a>
+<header class="hero">
+  <nav class="nav">
+    <a href="#" class="brand">HANCAN <span>KEBAP DÖNER</span></a>
+    <a class="phone" href="tel:05451546507">0545 154 65 07</a>
+  </nav>
+  <div class="hero-content">
+    <p class="eyebrow">ANTALYA • KEPEZ</p>
+    <h1>Lezzetin <span>ateşle</span> buluştuğu yer.</h1>
+    <p>Ustalıkla hazırlanan kebap, döner ve ızgara lezzetleri.</p>
+    <a class="gold button" href="#menu">Menüyü İncele ↓</a>
+  </div>
 </header>
+
 <main>
-<section class="hero">
-<div><p class="eyebrow">ANTALYA • KEPEZ</p><h1>Güzel yemek,<br><em>güzel anlar.</em></h1><p>Kebap, döner ve ızgara lezzetleri Hancan ustalığıyla sofranızda.</p><a class="gold" href="#menu">Menüyü İncele ↓</a></div>
-<div class="food">🥙<small>USTALIKLA HAZIRLANIR</small></div>
-</section>
-<section class="info">
-<div><b>⌖ Antalya / Kepez</b><small>Mehmet Akif Ersoy Mahallesi</small></div>
-<div><b>♨ Taze hazırlık</b><small>Kebap • Döner • Izgara</small></div>
-<div><b>☎ 0545 154 65 07</b><small>Sipariş ve bilgi</small></div>
-</section>
-<section id="menu">
-<p class="eyebrow">MENÜMÜZ</p><h2>Canın ne çekti?</h2>
-<p class="note">Fiyatlar örnektir; gerçek fiyatlarla güncellenmelidir.</p>
-<nav id="categories"></nav>
-<div id="products" class="products"></div>
-</section>
-<section class="banner">
-<div><p class="eyebrow">SİPARİŞ VER</p><h2>Hancan lezzeti bir telefon uzağında.</h2><p>Seçtiklerini WhatsApp üzerinden bize ilet.</p></div>
-<a class="gold" href="https://wa.me/905451546507" target="_blank">WhatsApp'tan Sipariş ↗</a>
-</section>
+  <section class="intro">
+    <p class="eyebrow">HANCAN LEZZETLERİ</p>
+    <h2>Bugün ne yemek istersin?</h2>
+    <p>Favorini seç, sepetine ekle ve siparişini WhatsApp'tan gönder.</p>
+  </section>
+
+  <section id="menu" class="menu-section">
+    <div id="categories" class="categories"></div>
+    <div id="products" class="products">
+      <p>Menü yükleniyor...</p>
+    </div>
+  </section>
+
+  <section class="service">
+    <h2>Bizi nerede tercih edersin?</h2>
+    <div class="service-grid">
+      <article><span>🍽️</span><h3>Masa servisi</h3><p>Restoranımızda keyifle ye.</p></article>
+      <article><span>🛵</span><h3>Paket servis</h3><p>Siparişini adresine iste.</p></article>
+      <article><span>🥡</span><h3>Gel-al</h3><p>Siparişini hazır al.</p></article>
+    </div>
+  </section>
+
+  <section class="contact">
+    <p class="eyebrow">BİZE ULAŞ</p>
+    <h2>Hancan Kebap Döner</h2>
+    <p>Mehmet Akif Ersoy Mahallesi, Kepez / Antalya</p>
+    <a class="gold button" href="https://maps.app.goo.gl/mmt8vHFFCCRdgJHJ8" target="_blank" rel="noopener">Yol Tarifi Al ↗</a>
+    <a class="outline button" href="https://wa.me/905451546507" target="_blank" rel="noopener">WhatsApp</a>
+  </section>
 </main>
-<footer>
-<a class="brand" href="#"><b>H</b><span>HANCAN<small>KEBAP &amp; DÖNER</small></span></a>
-<a href="https://maps.app.goo.gl/mmt8vHFFCCRdgJHJ8" target="_blank">Yol tarifi al ↗</a>
-<p>© <span id="year"></span> Hancan Kebap Döner</p>
-</footer>
-<div id="cartbar" hidden><button id="openCart" type="button">Sepetim <span id="count">0</span> · <strong id="total">0 ₺</strong></button></div>
-<dialog id="cart">
-<form method="dialog" class="dialogtop"><h2>Siparişin</h2><button type="submit">×</button></form>
-<div id="cartitems"></div>
-<form id="checkout">
-<label>Ad soyad<input name="name" required placeholder="Adınız ve soyadınız"></label>
-<label>Telefon<input name="phone" type="tel" required placeholder="05xx xxx xx xx"></label>
-<label>Teslimat<select name="delivery"><option>Adrese teslim</option><option>Gel-al</option></select></label>
-<label>Adres / not<textarea name="address" rows="2" placeholder="Adresiniz veya sipariş notu"></textarea></label>
-<label>Ödeme<select name="payment"><option>Kapıda nakit</option><option>Kapıda kart</option><option>Yemek kartı (uygunsa)</option></select></label>
-<button class="gold send" type="submit">WhatsApp'tan Siparişi Gönder ↗</button>
-<p class="note">Sipariş WhatsApp mesajı olarak hazırlanır.</p>
-</form>
+
+<div id="cartbar" class="cartbar" hidden>
+  <span><strong id="count">0</strong> ürün · <strong id="total">0 ₺</strong></span>
+  <button id="openCart" class="gold button">Sepeti Gör →</button>
+</div>
+
+<dialog id="cart" class="cart-dialog">
+  <div class="dialog-head">
+    <h2>Sipariş sepetin</h2>
+    <button id="closeCart" class="close" type="button" aria-label="Sepeti kapat">✕</button>
+  </div>
+  <div id="cartitems"></div>
+  <form id="checkout">
+    <label>Ad Soyad
+      <input name="name" required placeholder="Adınız soyadınız">
+    </label>
+    <label>Telefon
+      <input name="phone" type="tel" required placeholder="05xx xxx xx xx">
+    </label>
+    <label>Sipariş türü
+      <select name="service" id="serviceType">
+        <option value="Masa servisi">Masa servisi</option>
+        <option value="Paket servis">Paket servis</option>
+        <option value="Gel-al">Gel-al</option>
+      </select>
+    </label>
+    <label id="addressLabel">Adres / masa numarası
+      <textarea name="address" rows="2" placeholder="Adres, masa numarası veya sipariş notu"></textarea>
+    </label>
+    <label>Ödeme
+      <select name="payment">
+        <option>Kapıda nakit</option>
+        <option>Kapıda kart</option>
+        <option>Restoranda ödeme</option>
+        <option>Yemek kartı (uygunsa)</option>
+      </select>
+    </label>
+    <button class="gold button send" type="submit">WhatsApp'tan Sipariş Ver ↗</button>
+    <p class="note">Siparişin WhatsApp mesajı olarak hazırlanır. Göndermeden önce kontrol edebilirsin.</p>
+  </form>
 </dialog>
-<script src="script.js"></script>
+
+<footer>© <span id="year"></span> Hancan Kebap Döner · Afiyet olsun!</footer>
 </body>
 </html>
