@@ -1,2 +1,2 @@
-window.HANCAN_SUPABASE_URL = "SUPABASE_PROJE_URL_BURAYA";
-window.HANCAN_SUPABASE_PUBLISHABLE_KEY = "SB_PUBLISHABLE_ANAHTAR_BURAYA";
+window.HANCAN_SUPABASE_URL = "https://ujshhywhaxtgzhahriyb.supabase.co";
+window.HANCAN_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_1OlIwLrX8dVWl0or1fC3Ow_Ytfef-NP";
