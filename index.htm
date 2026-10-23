@@ -2,264 +2,128 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hancan Kebap Döner</title>
-
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#111;
-  color:#fff;
-}
-header{
-  background:#080808;
-  text-align:center;
-  padding:25px 12px;
-  border-bottom:2px solid #d4af37;
-}
-header h1{
-  color:#d4af37;
-  margin:0 0 8px;
-  font-size:29px;
-}
-header p{margin:0;color:#ddd}
-.hero{
-  text-align:center;
-  padding:35px 15px;
-  background:linear-gradient(135deg,#252525,#111);
-}
-.hero h2{color:#d4af37;font-size:27px}
-button{
-  cursor:pointer;
-  border:0;
-  border-radius:8px;
-  padding:12px 15px;
-  font-weight:bold;
-}
+html{scroll-behavior:smooth}
+body{margin:0;background:#111;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:25px 10px;background:#080808;border-bottom:2px solid #d4af37}
+header h1{margin:0;color:#d4af37}
+header p{margin-bottom:0}
+.hero{text-align:center;padding:30px 15px;background:#211b12}
+h2,.gold-text{color:#d4af37}
+button{border:0;border-radius:7px;padding:11px;cursor:pointer;font-weight:bold}
 .gold{background:#d4af37;color:#111}
-.menu{
-  max-width:1000px;
-  margin:auto;
-  padding:20px 14px;
-}
-.menu h2,.cart h2{color:#d4af37}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:14px;
-}
-.card{
-  background:#202020;
-  border:1px solid #393939;
-  border-radius:12px;
-  padding:15px;
-}
-.card h3{font-size:17px;margin:5px 0 12px}
-.price{color:#d4af37;font-size:19px;font-weight:bold}
+.categories{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:20px 10px}
+.categories a{color:#d4af37;border:1px solid #d4af37;padding:10px;border-radius:20px;text-decoration:none}
+.menu,.cart{max-width:1000px;margin:auto;padding:15px}
+.category{scroll-margin-top:12px;margin-bottom:30px}
+.category h2{border-bottom:1px solid #6b5724;padding-bottom:10px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.card,.cart{background:#202020;border:1px solid #38332a;border-radius:10px;padding:15px}
+.card h3{font-size:17px}
+.price{color:#d4af37;font-weight:bold;font-size:19px}
 .card button{width:100%;margin-top:12px}
-.cart{
-  max-width:1000px;
-  margin:15px auto;
-  padding:20px 14px;
-  background:#202020;
-  border-radius:12px;
-}
-.cart-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  border-bottom:1px solid #444;
-  padding:12px 0;
-}
-.cart-item button{padding:7px 10px}
-.total{
-  color:#d4af37;
-  font-size:23px;
-  font-weight:bold;
-  margin:20px 0;
-}
-input,textarea{
-  width:100%;
-  padding:12px;
-  margin:6px 0 12px;
-  border-radius:7px;
-  border:1px solid #555;
-  background:#111;
-  color:white;
-}
-#order{width:100%;background:#25D366;color:#111;font-size:16px}
-footer{
-  text-align:center;
-  padding:25px 10px;
-  color:#aaa;
-  border-top:1px solid #333;
-}
+.cart-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #444}
+.cart-item button{margin:2px}
+.total{font-size:22px;color:#d4af37;font-weight:bold;margin:20px 0}
+input,textarea{width:100%;padding:12px;margin:8px 0 14px;background:#111;color:white;border:1px solid #555;border-radius:6px}
+#order{width:100%;background:#25d366;color:#111;font-size:16px}
+footer{text-align:center;color:#aaa;padding:25px}
 </style>
 </head>
-
 <body>
-
 <header>
-  <h1>HANCAN KEBAP DÖNER</h1>
-  <p>Lezzetin doğru adresi!</p>
+<h1>HANCAN KEBAP DÖNER</h1>
+<p>Lezzetin doğru adresi!</p>
 </header>
-
-<section class="hero">
-  <h2>Lezzetimizi Keşfet</h2>
-  <p>Sevdiğin lezzetleri seç, sepetine ekle ve siparişini oluştur.</p>
-  <button class="gold" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
-    MENÜMÜZÜ KEŞFET
-  </button>
-</section>
-
-<section class="menu" id="menu">
-  <h2>🍽️ Menümüz</h2>
-  <div class="products" id="products"></div>
-</section>
-
+<div class="hero">
+<h2>Lezzetimizi Keşfet</h2>
+<p>Sevdiğin ürünleri seç, sepetine ekle.</p>
+<button class="gold" onclick="document.getElementById('menu').scrollIntoView()">MENÜMÜZÜ KEŞFET</button>
+</div>
+<nav class="categories">
+<a href="#tavuk">🍗 Tavuk</a>
+<a href="#doner">🥙 Döner</a>
+<a href="#kebap">🔥 Kebap</a>
+<a href="#icecek">🥤 İçecekler</a>
+</nav>
+<main class="menu" id="menu">
+<section class="category" id="tavuk"><h2>🍗 Tavuk Çeşitleri</h2><div class="products" id="list-tavuk"></div></section>
+<section class="category" id="doner"><h2>🥙 Döner Çeşitleri</h2><div class="products" id="list-doner"></div></section>
+<section class="category" id="kebap"><h2>🔥 Kebap Çeşitleri</h2><div class="products" id="list-kebap"></div></section>
+<section class="category" id="icecek"><h2>🥤 İçecekler</h2><div class="products" id="list-icecek"></div></section>
+</main>
 <section class="cart" id="cart">
-  <h2>🛒 Sepetim</h2>
-  <div id="cartItems">Sepetiniz şu an boş.</div>
-  <div class="total">Toplam: <span id="total">0</span> TL</div>
-
-  <h3>Sipariş Bilgileri</h3>
-  <label for="customer">Adınız</label>
-  <input id="customer" placeholder="Adınızı yazın">
-
-  <label for="address">Teslimat adresiniz</label>
-  <textarea id="address" rows="3" placeholder="Adresinizi yazın"></textarea>
-
-  <button id="order" onclick="sendOrder()">WhatsApp ile Sipariş Ver</button>
-  <p style="font-size:12px;color:#aaa">
-    Siparişiniz WhatsApp üzerinden iletilir. Ödeme ve teslimat işletmeyle teyit edilir.
-  </p>
+<h2>🛒 Sepetim</h2>
+<div id="items">Sepetiniz boş.</div>
+<div class="total">Toplam: <span id="total">0</span> TL</div>
+<h3>Sipariş bilgileri</h3>
+<label for="customer">Adınız</label>
+<input id="customer" placeholder="Adınızı yazın">
+<label for="address">Teslimat adresi</label>
+<textarea id="address" rows="3" placeholder="Adresinizi yazın"></textarea>
+<button id="order" onclick="sendOrder()">WhatsApp ile Sipariş Ver</button>
 </section>
-
-<footer>
-  <p><strong style="color:#d4af37">Hancan Kebap Döner</strong></p>
-  <p>Afiyet olsun!</p>
-</footer>
-
+<footer>Hancan Kebap Döner · Afiyet olsun!</footer>
 <script>
-const products = [
-  {id:1,name:"Tavuk Döner Dürüm",price:150},
-  {id:2,name:"Et Döner Dürüm",price:220},
-  {id:3,name:"Tavuk Döner Porsiyon",price:250},
-  {id:4,name:"Et Döner Porsiyon",price:320},
-  {id:5,name:"Tavuk Şiş",price:650},
-  {id:6,name:"Tavuk Kelebek",price:600},
-  {id:7,name:"Tavuk Pirzola",price:600},
-  {id:8,name:"Tavuk Kanat",price:700},
-  {id:9,name:"Patates Kızartması",price:100},
-  {id:10,name:"Ayran",price:35},
-  {id:11,name:"Kola",price:60}
+// Yeni ürün eklemek için bu listeye yeni bir satır ekle.
+// Kategori: tavuk, doner, kebap veya icecek
+const products=[
+{id:1,name:"Tavuk Şiş",price:650,category:"tavuk"},
+{id:2,name:"Tavuk Kelebek",price:600,category:"tavuk"},
+{id:3,name:"Tavuk Pirzola",price:600,category:"tavuk"},
+{id:4,name:"Tavuk Kanat",price:700,category:"tavuk"},
+{id:5,name:"Tavuk Döner Dürüm",price:150,category:"doner"},
+{id:6,name:"Et Döner Dürüm",price:220,category:"doner"},
+{id:7,name:"Tavuk Döner Porsiyon",price:250,category:"doner"},
+{id:8,name:"Et Döner Porsiyon",price:320,category:"doner"},
+{id:9,name:"Adana Kebap",price:350,category:"kebap"},
+{id:10,name:"Urfa Kebap",price:350,category:"kebap"},
+{id:11,name:"Ayran",price:35,category:"icecek"},
+{id:12,name:"Kola",price:60,category:"icecek"}
 ];
-
-let cart = [];
-
+let cart=[];
 function showProducts(){
-  document.getElementById("products").innerHTML = products.map(p => `
-    <div class="card">
-      <h3>${p.name}</h3>
-      <div class="price">${p.price} TL</div>
-      <button class="gold" onclick="addToCart(${p.id})">
-        Sepete Ekle
-      </button>
-    </div>
-  `).join("");
+["tavuk","doner","kebap","icecek"].forEach(cat=>{
+const list=products.filter(p=>p.category===cat);
+document.getElementById("list-"+cat).innerHTML=list.map(p=>
+`<article class="card"><h3>${p.name}</h3><div class="price">${p.price} TL</div><button class="gold" onclick="add(${p.id})">Sepete Ekle</button></article>`
+).join("");
+});
 }
-
-function addToCart(id){
-  const product = products.find(p => p.id === id);
-  const item = cart.find(i => i.id === id);
-
-  if(item){
-    item.qty++;
-  }else{
-    cart.push({...product,qty:1});
-  }
-
-  showCart();
+function add(id){
+const p=products.find(x=>x.id===id);
+const found=cart.find(x=>x.id===id);
+if(found)found.qty++;else cart.push({...p,qty:1});
+showCart();
 }
-
-function changeQty(id,amount){
-  const item = cart.find(i => i.id === id);
-  if(!item) return;
-
-  item.qty += amount;
-  if(item.qty <= 0){
-    cart = cart.filter(i => i.id !== id);
-  }
-
-  showCart();
+function change(id,n){
+const p=cart.find(x=>x.id===id);
+if(!p)return;
+p.qty+=n;
+if(p.qty<=0)cart=cart.filter(x=>x.id!==id);
+showCart();
 }
-
 function showCart(){
-  const container = document.getElementById("cartItems");
-
-  if(cart.length === 0){
-    container.innerHTML = "Sepetiniz şu an boş.";
-  }else{
-    container.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          ${item.price} TL × ${item.qty}
-        </div>
-        <div>
-          <button class="gold" onclick="changeQty(${item.id},-1)">−</button>
-          <button class="gold" onclick="changeQty(${item.id},1)">+</button>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  const total = cart.reduce((sum,item) => sum + item.price * item.qty,0);
-  document.getElementById("total").textContent = total;
+document.getElementById("items").innerHTML=cart.length?cart.map(p=>
+`<div class="cart-item"><div><b>${p.name}</b><br>${p.price} TL × ${p.qty}</div><div><button class="gold" onclick="change(${p.id},-1)">−</button><button class="gold" onclick="change(${p.id},1)">+</button></div></div>`
+).join(""):"Sepetiniz boş.";
+document.getElementById("total").textContent=cart.reduce((s,p)=>s+p.price*p.qty,0);
 }
-
 function sendOrder(){
-  if(cart.length === 0){
-    alert("Kanka, önce sepetine ürün ekle!");
-    return;
-  }
-
-  const customer = document.getElementById("customer").value.trim();
-  const address = document.getElementById("address").value.trim();
-
-  if(!customer || !address){
-    alert("Lütfen adını ve teslimat adresini yaz.");
-    return;
-  }
-
-  const total = cart.reduce((sum,item) => sum + item.price * item.qty,0);
-
-  let message = "Merhaba Hancan Kebap Döner, sipariş vermek istiyorum.%0A";
-  message += "%0AAd: " + encodeURIComponent(customer);
-  message += "%0AAdres: " + encodeURIComponent(address);
-  message += "%0A%0ASipariş:%0A";
-
-  cart.forEach(item => {
-    message += encodeURIComponent(
-      item.name + " x " + item.qty + " = " +
-      (item.price * item.qty) + " TL"
-    ) + "%0A";
-  });
-
-  message += "%0AToplam: " + total + " TL";
-
-  window.open(
-    "https://wa.me/905451546507?text=" + message,
-    "_blank"
-  );
+if(!cart.length){alert("Önce sepetinize ürün ekleyin.");return;}
+const name=document.getElementById("customer").value.trim();
+const address=document.getElementById("address").value.trim();
+if(!name||!address){alert("Adınızı ve adresinizi yazın.");return;}
+let msg="Merhaba Hancan Kebap Döner, sipariş vermek istiyorum.\nAd: "+name+"\nAdres: "+address+"\n\n";
+cart.forEach(p=>msg+=p.name+" x "+p.qty+" = "+p.price*p.qty+" TL\n");
+msg+="\nToplam: "+cart.reduce((s,p)=>s+p.price*p.qty,0)+" TL";
+window.open("https://wa.me/905451546507?text="+encodeURIComponent(msg),"_blank");
 }
-
 showProducts();
 showCart();
 </script>
-
 </body>
 </html>
