@@ -1,105 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="tr">
-<head> <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hancan Kebap Döner</title>
-<link rel="stylesheet" href="stil.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#111111">
-<title>Hancan Kebap Döner | Antalya</title>
-<meta name="description" content="Hancan Kebap Döner - Kebap, döner ve ızgara lezzetleri.">
-<link rel="stylesheet" href="stil.css">
-<script src="script.js" defer></script>
+<!DOCTYPE html><html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>Hancan Kebap Döner | Antalya</title>
+  <link rel="stylesheet" href="stil.css">
 </head>
-<body>
-<header class="hero">
-  <nav class="nav">
-    <a href="#" class="brand">HANCAN <span>KEBAP DÖNER</span></a>
-    <a class="phone" href="tel:05451546507">0545 154 65 07</a>
-  </nav>
+<body><header class="header">
+  <a class="logo" href="#">HANCAN<span>KEBAP & DÖNER</span></a>
+  <a class="phone" href="tel:05451546507">☎ Bizi Ara</a>
+</header><section class="hero">
   <div class="hero-content">
     <p class="eyebrow">ANTALYA • KEPEZ</p>
-    <h1>Lezzetin <span>ateşle</span> buluştuğu yer.</h1>
-    <p>Ustalıkla hazırlanan kebap, döner ve ızgara lezzetleri.</p>
-    <a class="gold button" href="#menu">Menüyü İncele ↓</a>
+    <h1>Gerçek Lezzet,<br><span>Usta Ellerden.</span></h1>
+    <p>Özenle hazırlanan kebaplar, sıcacık dönerler ve ızgara lezzetleri.</p>
+    <a class="button" href="#menu">MENÜYÜ KEŞFET</a>
+    <a class="button outline" href="https://wa.me/905451546507">WHATSAPP'TAN ULAŞ</a>
   </div>
-</header>
-
-<main>
-  <section class="intro">
-    <p class="eyebrow">HANCAN LEZZETLERİ</p>
-    <h2>Bugün ne yemek istersin?</h2>
-    <p>Favorini seç, sepetine ekle ve siparişini WhatsApp'tan gönder.</p>
-  </section>
-
-  <section id="menu" class="menu-section">
-    <div id="categories" class="categories"></div>
-    <div id="products" class="products">
-      <p>Menü yükleniyor...</p>
-    </div>
-  </section>
-
-  <section class="service">
-    <h2>Bizi nerede tercih edersin?</h2>
-    <div class="service-grid">
-      <article><span>🍽️</span><h3>Masa servisi</h3><p>Restoranımızda keyifle ye.</p></article>
-      <article><span>🛵</span><h3>Paket servis</h3><p>Siparişini adresine iste.</p></article>
-      <article><span>🥡</span><h3>Gel-al</h3><p>Siparişini hazır al.</p></article>
-    </div>
-  </section>
-
-  <section class="contact">
-    <p class="eyebrow">BİZE ULAŞ</p>
-    <h2>Hancan Kebap Döner</h2>
-    <p>Mehmet Akif Ersoy Mahallesi, Kepez / Antalya</p>
-    <a class="gold button" href="https://maps.app.goo.gl/mmt8vHFFCCRdgJHJ8" target="_blank" rel="noopener">Yol Tarifi Al ↗</a>
-    <a class="outline button" href="https://wa.me/905451546507" target="_blank" rel="noopener">WhatsApp</a>
-  </section>
-</main>
-
-<div id="cartbar" class="cartbar" hidden>
-  <span><strong id="count">0</strong> ürün · <strong id="total">0 ₺</strong></span>
-  <button id="openCart" class="gold button">Sepeti Gör →</button>
-</div>
-
-<dialog id="cart" class="cart-dialog">
-  <div class="dialog-head">
-    <h2>Sipariş sepetin</h2>
-    <button id="closeCart" class="close" type="button" aria-label="Sepeti kapat">✕</button>
+</section><section class="section" id="menu">
+  <p class="eyebrow">HANCAN LEZZETLERİ</p>
+  <h2>Menümüz</h2>
+  <p class="muted">Favori lezzetini seç, siparişini oluştur.</p>  <div id="categories" class="categories"></div>
+  <div id="products" class="products"></div>
+</section><section class="contact">
+  <h2>Lezzetimize Bekleriz</h2>
+  <p>Antalya • Kepez • Mehmet Akif Ersoy Mahallesi</p>
+  <a class="button" href="https://maps.app.goo.gl/mmt8vHFFCCRdgJHJ8">YOL TARİFİ AL</a>
+  <a class="button outline" href="tel:05451546507">0545 154 65 07</a>
+</section><footer>© <span id="year"></span> Hancan Kebap Döner</footer><div class="cartbar">
+  <span>🛒 <b id="count">0</b> ürün · <b id="total">0 ₺</b></span>
+  <button id="openCart">Sepeti Gör</button>
+</div><dialog id="cart">
+  <div class="carthead">
+    <h2>Siparişin</h2>
+    <button type="button" id="closeCart">✕</button>
   </div>
-  <div id="cartitems"></div>
-  <form id="checkout">
-    <label>Ad Soyad
-      <input name="name" required placeholder="Adınız soyadınız">
-    </label>
-    <label>Telefon
-      <input name="phone" type="tel" required placeholder="05xx xxx xx xx">
-    </label>
+  <div id="cartitems"></div>  <form id="checkout">
+    <label>Ad Soyad<input name="name" required placeholder="Adınız soyadınız"></label>
+    <label>Telefon<input name="phone" required type="tel" placeholder="05xx xxx xx xx"></label>
     <label>Sipariş türü
-      <select name="service" id="serviceType">
-        <option value="Masa servisi">Masa servisi</option>
-        <option value="Paket servis">Paket servis</option>
-        <option value="Gel-al">Gel-al</option>
+      <select name="delivery">
+        <option>Masa servisi</option>
+        <option>Paket servis</option>
+        <option>Gel-al</option>
       </select>
     </label>
-    <label id="addressLabel">Adres / masa numarası
-      <textarea name="address" rows="2" placeholder="Adres, masa numarası veya sipariş notu"></textarea>
-    </label>
+    <label>Adres / Not<textarea name="address" placeholder="Adres veya sipariş notu"></textarea></label>
     <label>Ödeme
       <select name="payment">
         <option>Kapıda nakit</option>
         <option>Kapıda kart</option>
-        <option>Restoranda ödeme</option>
-        <option>Yemek kartı (uygunsa)</option>
       </select>
     </label>
-    <button class="gold button send" type="submit">WhatsApp'tan Sipariş Ver ↗</button>
-    <p class="note">Siparişin WhatsApp mesajı olarak hazırlanır. Göndermeden önce kontrol edebilirsin.</p>
+    <button class="button submit" type="submit">WhatsApp'tan Sipariş Ver</button>
   </form>
-</dialog>
-
-<footer>© <span id="year"></span> Hancan Kebap Döner · Afiyet olsun!</footer>
-</body>
+</dialog><script src="script.js"></script></body>
 </html>
