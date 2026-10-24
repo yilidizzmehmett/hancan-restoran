@@ -2,128 +2,403 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hancan Kebap Döner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hancan Kebap Döner | Online Menü</title>
+
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#111;color:#fff;font-family:Arial,sans-serif}
-header{text-align:center;padding:25px 10px;background:#080808;border-bottom:2px solid #d4af37}
-header h1{margin:0;color:#d4af37}
-header p{margin-bottom:0}
-.hero{text-align:center;padding:30px 15px;background:#211b12}
-h2,.gold-text{color:#d4af37}
-button{border:0;border-radius:7px;padding:11px;cursor:pointer;font-weight:bold}
-.gold{background:#d4af37;color:#111}
-.categories{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:20px 10px}
-.categories a{color:#d4af37;border:1px solid #d4af37;padding:10px;border-radius:20px;text-decoration:none}
-.menu,.cart{max-width:1000px;margin:auto;padding:15px}
-.category{scroll-margin-top:12px;margin-bottom:30px}
-.category h2{border-bottom:1px solid #6b5724;padding-bottom:10px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.card,.cart{background:#202020;border:1px solid #38332a;border-radius:10px;padding:15px}
-.card h3{font-size:17px}
-.price{color:#d4af37;font-weight:bold;font-size:19px}
-.card button{width:100%;margin-top:12px}
-.cart-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #444}
-.cart-item button{margin:2px}
-.total{font-size:22px;color:#d4af37;font-weight:bold;margin:20px 0}
-input,textarea{width:100%;padding:12px;margin:8px 0 14px;background:#111;color:white;border:1px solid #555;border-radius:6px}
-#order{width:100%;background:#25d366;color:#111;font-size:16px}
-footer{text-align:center;color:#aaa;padding:25px}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f3ef;color:#222}
+header{background:#171717;color:#fff;text-align:center;padding:28px 15px}
+header h1{margin:0;color:#e8b64c;font-size:30px}
+header p{margin:8px 0 0}
+.hero{background:#252525;color:white;text-align:center;padding:22px 12px}
+.hero h2{margin:0 0 8px;color:#e8b64c}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:white;position:sticky;top:0;z-index:5}
+nav a{white-space:nowrap;text-decoration:none;background:#252525;color:white;padding:10px 13px;border-radius:7px;font-size:14px}
+nav a:hover{background:#b88627}
+main{max-width:1000px;margin:auto;padding:12px}
+.category{margin:24px 0;scroll-margin-top:75px}
+.category h2{background:#202020;color:#e8b64c;padding:14px;border-radius:8px;margin-bottom:10px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.product{background:white;border-radius:9px;padding:15px;box-shadow:0 2px 7px #00000010;display:flex;flex-direction:column;justify-content:space-between}
+.product h3{margin:0 0 12px;font-size:16px}
+.price{font-size:19px;font-weight:bold;color:#9b6b0d;margin-bottom:12px}
+button{border:0;border-radius:6px;padding:11px;background:#218838;color:white;font-weight:bold;cursor:pointer}
+button:hover{opacity:.88}
+.cart{background:white;border-radius:10px;padding:18px;margin:25px 0;box-shadow:0 2px 8px #00000012}
+.cart h2{margin-top:0}
+.cart-row{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid #eee;padding:10px 0}
+.cart-row button{padding:5px 10px;background:#333}
+.cart-row .remove{background:#b3261e}
+.cart-total{font-size:23px;font-weight:bold;margin:18px 0}
+input,textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;margin:6px 0 12px;font:inherit}
+.order-button{width:100%;background:#168a43;font-size:17px;padding:15px}
+.clear-button{background:#777;margin-top:8px}
+footer{text-align:center;background:#171717;color:white;padding:24px;margin-top:30px}
+footer strong{color:#e8b64c}
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>HANCAN KEBAP DÖNER</h1>
-<p>Lezzetin doğru adresi!</p>
+  <h1>HANCAN KEBAP DÖNER</h1>
+  <p>Lezzetin doğru adresi</p>
 </header>
+
 <div class="hero">
-<h2>Lezzetimizi Keşfet</h2>
-<p>Sevdiğin ürünleri seç, sepetine ekle.</p>
-<button class="gold" onclick="document.getElementById('menu').scrollIntoView()">MENÜMÜZÜ KEŞFET</button>
+  <h2>Online Menü</h2>
+  <p>Menümüzü inceleyin, siparişinizi oluşturun!</p>
 </div>
-<nav class="categories">
-<a href="#tavuk">🍗 Tavuk</a>
-<a href="#doner">🥙 Döner</a>
-<a href="#kebap">🔥 Kebap</a>
-<a href="#icecek">🥤 İçecekler</a>
-</nav>
-<main class="menu" id="menu">
-<section class="category" id="tavuk"><h2>🍗 Tavuk Çeşitleri</h2><div class="products" id="list-tavuk"></div></section>
-<section class="category" id="doner"><h2>🥙 Döner Çeşitleri</h2><div class="products" id="list-doner"></div></section>
-<section class="category" id="kebap"><h2>🔥 Kebap Çeşitleri</h2><div class="products" id="list-kebap"></div></section>
-<section class="category" id="icecek"><h2>🥤 İçecekler</h2><div class="products" id="list-icecek"></div></section>
+
+<nav id="categoryNav"></nav>
+
+<main>
+  <div id="menu"></div>
+
+  <section class="cart" id="sepet">
+    <h2>🛒 Sipariş Sepetim</h2>
+    <div id="cartItems">Sepetiniz henüz boş.</div>
+    <div class="cart-total">Toplam: <span id="total">0</span> TL</div>
+
+    <label for="customer">Adınız Soyadınız</label>
+    <input id="customer" placeholder="Adınız Soyadınız">
+
+    <label for="address">Teslimat Adresi</label>
+    <textarea id="address" rows="3" placeholder="Adresinizi yazın"></textarea>
+
+    <label for="note">Sipariş Notu (isteğe bağlı)</label>
+    <textarea id="note" rows="2" placeholder="Varsa sipariş notunuz"></textarea>
+
+    <button class="order-button" onclick="sendOrder()">
+      WhatsApp ile Sipariş Ver
+    </button>
+    <button class="clear-button" onclick="clearCart()">Sepeti Temizle</button>
+  </section>
 </main>
-<section class="cart" id="cart">
-<h2>🛒 Sepetim</h2>
-<div id="items">Sepetiniz boş.</div>
-<div class="total">Toplam: <span id="total">0</span> TL</div>
-<h3>Sipariş bilgileri</h3>
-<label for="customer">Adınız</label>
-<input id="customer" placeholder="Adınızı yazın">
-<label for="address">Teslimat adresi</label>
-<textarea id="address" rows="3" placeholder="Adresinizi yazın"></textarea>
-<button id="order" onclick="sendOrder()">WhatsApp ile Sipariş Ver</button>
-</section>
-<footer>Hancan Kebap Döner · Afiyet olsun!</footer>
+
+<footer>
+  <strong>HANCAN KEBAP DÖNER</strong>
+  <p>Afiyet olsun!</p>
+</footer>
+
 <script>
-// Yeni ürün eklemek için bu listeye yeni bir satır ekle.
-// Kategori: tavuk, doner, kebap veya icecek
-const products=[
-{id:1,name:"Tavuk Şiş",price:650,category:"tavuk"},
-{id:2,name:"Tavuk Kelebek",price:600,category:"tavuk"},
-{id:3,name:"Tavuk Pirzola",price:600,category:"tavuk"},
-{id:4,name:"Tavuk Kanat",price:700,category:"tavuk"},
-{id:5,name:"Tavuk Döner Dürüm",price:150,category:"doner"},
-{id:6,name:"Et Döner Dürüm",price:220,category:"doner"},
-{id:7,name:"Tavuk Döner Porsiyon",price:250,category:"doner"},
-{id:8,name:"Et Döner Porsiyon",price:320,category:"doner"},
-{id:9,name:"Adana Kebap",price:350,category:"kebap"},
-{id:10,name:"Urfa Kebap",price:350,category:"kebap"},
-{id:11,name:"Ayran",price:35,category:"icecek"},
-{id:12,name:"Kola",price:60,category:"icecek"}
+const categories = [
+{
+ name:"Pide Çeşitleri",
+ items:[
+  ["Lahmacun",120],
+  ["Kıymalı Pide",200],
+  ["Kıymalı Kaşarlı",230],
+  ["Kuşbaşılı",250],
+  ["Kuşbaşılı Kaşarlı",280],
+  ["Mevlana Pide",270],
+  ["Bıçak Arası Kıyma",280],
+  ["Kaşarlı Pide",230],
+  ["Kaşarlı Yumurtalı",260],
+  ["Kavurmalı Kaşarlı",270]
+ ]
+},
+{
+ name:"Döner Çeşitleri",
+ items:[
+  ["Ekmek Arası (100 GR)",150],
+  ["Klasik (100 GR)",150],
+  ["Hatay Soslu (100 GR)",150],
+  ["Zurna Döner (130 GR)",200],
+  ["Pilav Üstü (100 GR)",200],
+  ["Pilav Üstü (150 GR)",240],
+  ["Porsiyon Döner (150 GR)",250],
+  ["Porsiyon Döner (200 GR)",290]
+ ]
+},
+{
+ name:"Kebap ve Izgara",
+ items:[
+  ["Burdur Şiş",450],
+  ["Adana Kebap",450],
+  ["Kuzu Şiş",500],
+  ["Ciğer Şiş",500],
+  ["Tavuk Şiş",350],
+  ["Tavuk Kanat",360],
+  ["Patlıcanlı Kebap",450],
+  ["Domatesli Kebap",450],
+  ["Sarma Beyti",500],
+  ["Altı Ezmeli",450],
+  ["Yoğurtlu Kebap",500],
+  ["Tavuk Kelebek",340],
+  ["Tavuk Pirzola",340],
+  ["4 Kişilik Hancan Karışık Kebap",2200],
+  ["Tek Kişilik Karışık Specİal",900],
+  ["Izgara Köfte",450]
+ ]
+},
+{
+ name:"Dürüm Çeşitleri",
+ items:[
+  ["Adana Dürüm",220],
+  ["Urfa Dürüm",220],
+  ["Lahmacun Arası Adana",350],
+  ["Tavuk Şiş",200],
+  ["Kuzu Şiş",290],
+  ["Ciğer Şiş",290],
+  ["Köfte Dürüm",220],
+  ["Yarım Ekmek Köfte",220],
+  ["Specİal Karışık Dürüm (Adana-Kuzu)",450]
+ ]
+},
+{
+ name:"Kiloluk Tavuk ve Izgara",
+ items:[
+  ["Kanat 1 KG",699],
+  ["Kelebek 1 KG",499],
+  ["Pirzola 1 KG",499],
+  ["Tavuk Şiş 1 KG",649],
+  ["5 Şiş Adana + 5 Şiş Tavuk",1700],
+  ["Izgara Köfte 1 KG",1400]
+ ]
+},
+{
+ name:"Çorba Çeşitleri",
+ items:[
+  ["Mercimek Çorbası",200],
+  ["Tavuk Çorbası",200],
+  ["Kelle Paça Çorbası",250],
+  ["İşkembe Çorbası",250]
+ ]
+},
+{
+ name:"Burgerler",
+ items:[
+  ["Et Hamburger",350],
+  ["Tavuk Hamburger",250]
+ ]
+},
+{
+ name:"Saç Kavurmalar",
+ items:[
+  ["Et Saç Kavurma",560],
+  ["Tavuk Saç Kavurma",360]
+ ]
+},
+{
+ name:"Güveç Çeşitleri",
+ items:[
+  ["Güveçte Köfte",450],
+  ["Güveçte Kuzu",560],
+  ["Güveçte Tavuk",360]
+ ]
+},
+{
+ name:"Tatlılar",
+ items:[
+  ["Fırın Sütlaç",80],
+  ["Supangle",80],
+  ["Sade Künefe",200],
+  ["Fıstıklı Künefe",250],
+  ["Kare Katmer",250],
+  ["Gül Katmer",250],
+  ["Fıstıklı Burma",250]
+ ]
+},
+{
+ name:"İçecek Çeşitleri",
+ items:[
+  ["Coca cola 33cl.",80],
+  ["Coca cola Zero 33cl.",80],
+  ["Fanta 33cl.",80],
+  ["Sprite 33 cl.",80],
+  ["Fuse tea Karpuz 33cl.",80],
+  ["Fuse tea Şeftali 33cl.",80],
+  ["Fuse tea Mango 33cl.",80],
+  ["Fuse tea Limon 33cl.",80],
+  ["Fuse tea Çilek 33cl.",80],
+  ["Cappy şeftali 33cl.",80],
+  ["Cappy karışık 33cl.",80],
+  ["Cappy vişne 33cl.",80],
+  ["Sütaş ayran 27cl.",50],
+  ["Acılı şalgam 33cl.",50],
+  ["Acısız şalgam 33cl.",50],
+  ["Su 0.5",20],
+  ["1 litre kola",100],
+  ["1 litre fanta",100],
+  ["1 litre sprite",100],
+  ["1 litre ayran",80],
+  ["1 litre acılı şalgam",80],
+  ["1 litre acısız şalgam",80],
+  ["2.5 litre kola",130],
+  ["2.5 litre fanta",130]
+ ]
+},
+{
+ name:"Mezeler",
+ items:[
+  ["Humus",200],
+  ["Mutebbel",200],
+  ["Babağannuş",200],
+  ["Acı Ezme",150],
+  ["Haydari",150],
+  ["Köpoğlu",200]
+ ]
+}
 ];
-let cart=[];
-function showProducts(){
-["tavuk","doner","kebap","icecek"].forEach(cat=>{
-const list=products.filter(p=>p.category===cat);
-document.getElementById("list-"+cat).innerHTML=list.map(p=>
-`<article class="card"><h3>${p.name}</h3><div class="price">${p.price} TL</div><button class="gold" onclick="add(${p.id})">Sepete Ekle</button></article>`
-).join("");
+
+let products = [];
+let cart = {};
+
+categories.forEach((category, categoryIndex) => {
+  category.items.forEach((item, itemIndex) => {
+    products.push({
+      id: categoryIndex + "-" + itemIndex,
+      name: item[0],
+      price: item[1],
+      category: category.name
+    });
+  });
 });
+
+function renderMenu() {
+  const nav = document.getElementById("categoryNav");
+  const menu = document.getElementById("menu");
+
+  nav.innerHTML = "";
+  menu.innerHTML = "";
+
+  categories.forEach((category, index) => {
+    const id = "category-" + index;
+
+    nav.innerHTML += `
+      <a href="#${id}">${category.name}</a>
+    `;
+
+    const categoryProducts = products.filter(p => p.category === category.name);
+
+    menu.innerHTML += `
+      <section class="category" id="${id}">
+        <h2>${category.name}</h2>
+        <div class="products">
+          ${categoryProducts.map(p => `
+            <div class="product">
+              <div>
+                <h3>${p.name}</h3>
+                <div class="price">${p.price.toLocaleString("tr-TR")} TL</div>
+              </div>
+              <button onclick="addToCart('${p.id}')">Sepete Ekle</button>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  });
 }
-function add(id){
-const p=products.find(x=>x.id===id);
-const found=cart.find(x=>x.id===id);
-if(found)found.qty++;else cart.push({...p,qty:1});
-showCart();
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
 }
-function change(id,n){
-const p=cart.find(x=>x.id===id);
-if(!p)return;
-p.qty+=n;
-if(p.qty<=0)cart=cart.filter(x=>x.id!==id);
-showCart();
+
+function changeQuantity(id, change) {
+  cart[id] = (cart[id] || 0) + change;
+
+  if (cart[id] <= 0) {
+    delete cart[id];
+  }
+
+  renderCart();
 }
-function showCart(){
-document.getElementById("items").innerHTML=cart.length?cart.map(p=>
-`<div class="cart-item"><div><b>${p.name}</b><br>${p.price} TL × ${p.qty}</div><div><button class="gold" onclick="change(${p.id},-1)">−</button><button class="gold" onclick="change(${p.id},1)">+</button></div></div>`
-).join(""):"Sepetiniz boş.";
-document.getElementById("total").textContent=cart.reduce((s,p)=>s+p.price*p.qty,0);
+
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  const entries = Object.entries(cart);
+
+  if (entries.length === 0) {
+    container.innerHTML = "Sepetiniz henüz boş.";
+    document.getElementById("total").textContent = "0";
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = entries.map(([id, quantity]) => {
+    const product = products.find(p => p.id === id);
+    const subtotal = product.price * quantity;
+    total += subtotal;
+
+    return `
+      <div class="cart-row">
+        <div>
+          <strong>${product.name}</strong><br>
+          ${product.price.toLocaleString("tr-TR")} TL × ${quantity}
+          = ${subtotal.toLocaleString("tr-TR")} TL
+        </div>
+        <div>
+          <button onclick="changeQuantity('${id}',-1)">−</button>
+          <button onclick="changeQuantity('${id}',1)">+</button>
+          <button class="remove" onclick="removeItem('${id}')">×</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("total").textContent =
+    total.toLocaleString("tr-TR");
 }
-function sendOrder(){
-if(!cart.length){alert("Önce sepetinize ürün ekleyin.");return;}
-const name=document.getElementById("customer").value.trim();
-const address=document.getElementById("address").value.trim();
-if(!name||!address){alert("Adınızı ve adresinizi yazın.");return;}
-let msg="Merhaba Hancan Kebap Döner, sipariş vermek istiyorum.\nAd: "+name+"\nAdres: "+address+"\n\n";
-cart.forEach(p=>msg+=p.name+" x "+p.qty+" = "+p.price*p.qty+" TL\n");
-msg+="\nToplam: "+cart.reduce((s,p)=>s+p.price*p.qty,0)+" TL";
-window.open("https://wa.me/905451546507?text="+encodeURIComponent(msg),"_blank");
+
+function removeItem(id) {
+  delete cart[id];
+  renderCart();
 }
-showProducts();
-showCart();
+
+function clearCart() {
+  cart = {};
+  renderCart();
+}
+
+function sendOrder() {
+  const entries = Object.entries(cart);
+
+  if (entries.length === 0) {
+    alert("Kanka, önce sepete ürün ekle!");
+    return;
+  }
+
+  const customer = document.getElementById("customer").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const note = document.getElementById("note").value.trim();
+
+  let total = 0;
+  let message = "HANCAN KEBAP DÖNER - SİPARİŞİM\n\n";
+
+  entries.forEach(([id, quantity]) => {
+    const product = products.find(p => p.id === id);
+    const subtotal = product.price * quantity;
+    total += subtotal;
+
+    message += `${product.name} x ${quantity} = ${subtotal} TL\n`;
+  });
+
+  message += `\nTOPLAM: ${total} TL\n`;
+
+  if (customer) message += `\nAd Soyad: ${customer}`;
+  if (address) message += `\nAdres: ${address}`;
+  if (note) message += `\nSipariş Notu: ${note}`;
+
+  /*
+    Aşağıdaki numara önceki kodda kullanılan numaradır.
+    İşletmenin doğru WhatsApp numarası değilse değiştir.
+    Türkiye numarasını 90 ile başlat; + veya boşluk kullanma.
+  */
+  const whatsappNumber = "905451546507";
+
+  const url = "https://wa.me/" + whatsappNumber +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+
+renderMenu();
+renderCart();
 </script>
+
 </body>
 </html>
