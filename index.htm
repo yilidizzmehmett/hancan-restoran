@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -39,6 +40,22 @@ h2{color:var(--gold);margin:10px 0 16px}
 .order-fields{display:grid;gap:10px;margin-top:8px}
 .order-fields input,.order-fields textarea{width:100%;border:1px solid #4b4b4b;background:#151515;color:white;border-radius:8px;padding:12px;font:inherit}
 .order-fields textarea{min-height:75px;resize:vertical}
+.payment-section{margin-top:20px}
+.payment-section h3{color:var(--gold);margin:0 0 8px}
+.payment-hint{color:var(--muted);font-size:13px;margin:0 0 12px}
+.payment-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.payment-option{display:flex;align-items:center;gap:10px;min-height:76px;padding:12px;background:#171717;border:1px solid #454545;border-radius:10px;cursor:pointer;text-align:left;color:white;font:inherit}
+.payment-option.selected{border:2px solid var(--gold);background:#292317}
+.payment-option input{accent-color:var(--gold);width:18px;height:18px;flex:0 0 auto}
+.payment-logo{min-width:72px;max-width:110px;text-align:center;font-weight:900;font-size:15px;line-height:1.1;padding:8px 5px;border-radius:7px;background:#292929;overflow-wrap:anywhere}
+.logo-cash{color:#42d392}.logo-card{color:#5db8ff}.logo-multinet{color:#42d9c0}.logo-edenred{color:#ff4545}.logo-metropol{color:#38a9ff}.logo-pluxee{color:#54e879}.logo-setcard{color:#267bff}.logo-token{color:#ffad43}.logo-money{color:#ff742d}
+.payment-name{font-size:13px;font-weight:bold}
+.table-banner{display:none;margin:0 0 18px;padding:14px;border:1px solid var(--gold);border-radius:10px;background:#292317;color:var(--gold);font-weight:bold}
+.mode-panel{margin:0 0 18px;padding:16px;background:#202020;border:1px solid #414141;border-radius:12px}
+.mode-panel label{display:block;color:var(--gold);font-weight:bold;margin-bottom:8px}
+.mode-panel select{width:100%;padding:12px;border:1px solid #555;border-radius:8px;background:#151515;color:white;font:inherit}
+#tableSelectWrap{margin-top:12px;display:none}
+@media(max-width:420px){.payment-options{grid-template-columns:1fr}.payment-option{min-height:64px}}
 .whatsapp-btn{display:block;width:100%;margin-top:14px;padding:15px;border:0;border-radius:9px;background:var(--green);color:white;font-size:16px;font-weight:bold;text-align:center;cursor:pointer}
 .clear-btn{width:100%;margin-top:10px;padding:11px;background:transparent;border:1px solid #666;border-radius:8px;color:#ddd;cursor:pointer}
 footer{padding:24px 12px;text-align:center;color:#999;border-top:1px solid #333;font-size:13px}
@@ -53,6 +70,21 @@ footer{padding:24px 12px;text-align:center;color:#999;border-top:1px solid #333;
   <p>Lezzetin doğru adresi</p>
 </header>
 <main class="container">
+  <div id="tableBanner" class="table-banner" role="status"></div>
+  <section class="mode-panel" id="orderModePanel">
+    <label for="orderMode">Sipariş türü</label>
+    <select id="orderMode" onchange="updateOrderMode()">
+      <option value="">Sipariş türünü seçin</option>
+      <option value="table">Masada sipariş</option>
+      <option value="takeaway">Paket sipariş</option>
+    </select>
+    <div id="tableSelectWrap">
+      <label for="tableSelect" style="margin-top:12px">Masa numaranız</label>
+      <select id="tableSelect" onchange="updateTableSelection()">
+        <option value="">Masanızı seçin (1–25)</option>
+      </select>
+    </div>
+  </section>
   <h2>Menümüz</h2>
   <nav id="categoryBar" class="category-bar" aria-label="Menü kategorileri"></nav>
   <section aria-live="polite">
@@ -69,6 +101,11 @@ footer{padding:24px 12px;text-align:center;color:#999;border-top:1px solid #333;
       <input id="customerAddress" type="text" placeholder="Teslimat adresiniz" autocomplete="street-address">
       <textarea id="orderNote" placeholder="Sipariş notunuz (isteğe bağlı)"></textarea>
     </div>
+    <section class="payment-section" aria-labelledby="paymentTitle">
+      <h3 id="paymentTitle">Ödeme yöntemi</h3>
+      <p class="payment-hint">Ödeme yapacağınız yöntemi seçin.</p>
+      <div id="paymentOptions" class="payment-options"></div>
+    </section>
     <button class="whatsapp-btn" onclick="sendOrder()">WhatsApp ile Sipariş Ver</button>
     <button class="clear-btn" onclick="clearCart()">Sepeti Temizle</button>
   </section>
@@ -89,114 +126,310 @@ const categories = [
  {name:"İçecek Çeşitleri",items:[["Coca cola 33cl.",80],["Coca cola Zero 33cl.",80],["Fanta 33cl.",80],["Sprite 33 cl.",80],["Fuse tea Karpuz 33cl.",80],["Fuse tea Şeftali 33cl.",80],["Fuse tea Mango 33cl.",80],["Fuse tea Limon 33cl.",80],["Fuse tea Çilek 33cl.",80],["Cappy şeftali 33cl.",80],["Cappy karışık 33cl.",80],["Cappy vişne 33cl.",80],["Sütaş ayran 27cl.",50],["Acılı şalgam 33cl.",50],["Acısız şalgam 33cl.",50],["Su 0.5",20],["1 litre kola",100],["1 litre fanta",100],["1 litre sprite",100],["1 litre ayran",80],["1 litre acılı şalgam",80],["1 litre acısız şalgam",80],["2.5 litre kola",130],["2.5 litre fanta",130]]},
  {name:"Mezeler",items:[["Humus",200],["Mutebbel",200],["Babağannuş",200],["Acı Ezme",150],["Haydari",150],["Köpoğlu",200]]}
 ];
+
 const WHATSAPP_NUMBER = "905451546507";
+
+const paymentMethods = [
+ {name:"Nakit",logo:"₺ NAKİT",cls:"logo-cash"},
+ {name:"Kart",logo:"BANKA / KREDİ KARTI",cls:"logo-card"},
+ {name:"Multinet",logo:"Multinet",cls:"logo-multinet"},
+ {name:"Edenred Ticket",logo:"Edenred Ticket",cls:"logo-edenred"},
+ {name:"Metropol",logo:"MetropolCard",cls:"logo-metropol"},
+ {name:"Pluxee (Sodexo)",logo:"pluxee",cls:"logo-pluxee"},
+ {name:"Setcard",logo:"SETCARD",cls:"logo-setcard"},
+ {name:"Token flex",logo:"TOKEN FLEX",cls:"logo-token"},
+ {name:"MoneyYemek",logo:"MONEY Yemek",cls:"logo-money"},
+ {name:"IBAN ile Havale/EFT",logo:"IBAN",cls:"logo-card"}
+];
+
+const params = new URLSearchParams(window.location.search);
+const tableParam = params.get("masa");
+let tableNumber = tableParam && /^[1-9]$|^1[0-9]$|^2[0-5]$/.test(tableParam) ? tableParam : null;
+let selectedPayment = "";
+let orderMode = tableNumber ? "table" : "";
 const portionCategories = ["Pide Çeşitleri","Kebap ve Izgara","Dürüm Çeşitleri","Saç Kavurmalar","Güveç Çeşitleri"];
 let selectedCategory = 0;
 const cart = new Map();
-function formatPrice(amount){return amount.toLocaleString("tr-TR")+" TL";}
-function renderCategories(){
- const bar=document.getElementById("categoryBar");bar.replaceChildren();
- categories.forEach((category,index)=>{
-  const button=document.createElement("button");button.type="button";
-  button.className="category-btn"+(index===selectedCategory?" active":"");
-  button.textContent=category.name;button.setAttribute("aria-pressed",String(index===selectedCategory));
-  button.addEventListener("click",()=>{
-   selectedCategory=index;renderCategories();renderProducts();
-   document.querySelector(".category-btn.active")?.scrollIntoView({behavior:"smooth",block:"nearest",inline:"nearest"});
-  });bar.appendChild(button);
+
+function formatPrice(amount){
+ return amount.toLocaleString("tr-TR")+" TL";
+}
+
+function renderPaymentOptions(){
+ const container=document.getElementById("paymentOptions");
+ paymentMethods.forEach(method=>{
+  const label=document.createElement("label");
+  label.className="payment-option";
+
+  const radio=document.createElement("input");
+  radio.type="radio";
+  radio.name="paymentMethod";
+  radio.value=method.name;
+
+  radio.addEventListener("change",()=>{
+   selectedPayment=method.name;
+   document.querySelectorAll(".payment-option").forEach(el=>el.classList.remove("selected"));
+   label.classList.add("selected");
+   const iban=document.getElementById("ibanDetails");
+   if(iban) iban.style.display=selectedPayment==="IBAN ile Havale/EFT"?"block":"none";
+  });
+
+  const logo=document.createElement("span");
+  logo.className="payment-logo "+method.cls;
+  logo.textContent=method.logo;
+
+  const name=document.createElement("span");
+  name.className="payment-name";
+  name.textContent=method.name;
+
+  label.append(radio,logo,name);
+  container.appendChild(label);
+
+  if(method.name==="IBAN ile Havale/EFT"){
+   const details=document.createElement("div");
+   details.id="ibanDetails";
+   details.className="payment-hint";
+   details.style.display="none";
+   details.style.gridColumn="1 / -1";
+   details.innerHTML="<strong>Hesap sahibi:</strong> Mehmet Yıldız<br><strong>IBAN:</strong> TR63 0015 7000 0000 0158 1639 83<br><small>Havale/EFT sonrası siparişiniz ödeme kontrolünden sonra onaylanır.</small>";
+   container.appendChild(details);
+  }
  });
 }
+
+function setupTableOptions(){
+ const select=document.getElementById("tableSelect");
+ for(let i=1;i<=25;i++){
+  const option=document.createElement("option");
+  option.value=String(i);
+  option.textContent="Masa "+i;
+  select.appendChild(option);
+ }
+ if(tableNumber){
+  document.getElementById("orderMode").value="table";
+  document.getElementById("tableSelect").value=tableNumber;
+ }
+ updateOrderMode();
+}
+
+function updateOrderMode(){
+ orderMode=document.getElementById("orderMode").value;
+ const wrap=document.getElementById("tableSelectWrap");
+ wrap.style.display=orderMode==="table"?"block":"none";
+ if(orderMode!=="table") tableNumber=null;
+ updateTableSelection();
+
+ const address=document.getElementById("customerAddress");
+ address.hidden=orderMode==="table";
+ address.required=orderMode==="takeaway";
+ address.placeholder=orderMode==="table"?"Masada siparişte gerekmez":"Teslimat adresiniz";
+ document.getElementById("customerPhone").placeholder=orderMode==="table"?"Telefon numaranız (isteğe bağlı)":"Telefon numaranız";
+}
+
+function updateTableSelection(){
+ const chosen=document.getElementById("tableSelect").value;
+ tableNumber=orderMode==="table"&&chosen?chosen:null;
+ const banner=document.getElementById("tableBanner");
+
+ if(tableNumber){
+  banner.textContent="🍽️ Masa "+tableNumber+" · Masada sipariş";
+  banner.style.display="block";
+ }else{
+  banner.style.display="none";
+ }
+}
+
+function renderCategories(){
+ const bar=document.getElementById("categoryBar");
+ bar.replaceChildren();
+
+ categories.forEach((category,index)=>{
+  const button=document.createElement("button");
+  button.type="button";
+  button.className="category-btn"+(index===selectedCategory?" active":"");
+  button.textContent=category.name;
+  button.setAttribute("aria-pressed",String(index===selectedCategory));
+
+  button.addEventListener("click",()=>{
+   selectedCategory=index;
+   renderCategories();
+   renderProducts();
+   document.querySelector(".category-btn.active")?.scrollIntoView({behavior:"smooth",block:"nearest",inline:"nearest"});
+  });
+
+  bar.appendChild(button);
+ });
+}
+
 function renderProducts(){
- const category=categories[selectedCategory],container=document.getElementById("products");
+ const category=categories[selectedCategory];
+ const container=document.getElementById("products");
  document.getElementById("categoryTitle").textContent=category.name;
  document.getElementById("productCount").textContent=category.items.length+" ürün";
  container.replaceChildren();
+
  category.items.forEach(([name,price])=>{
-  const key=category.name+"::"+name,card=document.createElement("article");card.className="product";
-  const info=document.createElement("div"),productName=document.createElement("div");
-  productName.className="product-name";productName.textContent=name;
-  const productPrice=document.createElement("span");productPrice.className="price";productPrice.textContent=formatPrice(price);
+  const key=category.name+"::"+name;
+  const card=document.createElement("article");
+  card.className="product";
+
+  const info=document.createElement("div");
+  const productName=document.createElement("div");
+  productName.className="product-name";
+  productName.textContent=name;
+
+  const productPrice=document.createElement("span");
+  productPrice.className="price";
+  productPrice.textContent=formatPrice(price);
   info.append(productName,productPrice);
-  const addButton=document.createElement("button");addButton.type="button";addButton.className="add-btn";addButton.textContent="+ Ekle";
+
+  const addButton=document.createElement("button");
+  addButton.type="button";
+  addButton.className="add-btn";
+  addButton.textContent="+ Ekle";
   addButton.setAttribute("aria-label",name+" sepete ekle");
-  addButton.addEventListener("click",()=>portionCategories.includes(category.name)?showPortionChoice(category.name,name,price):addToCart(key,name,price));
-  card.append(info,addButton);container.appendChild(card);
+
+  addButton.addEventListener("click",()=>{
+   if(portionCategories.includes(category.name)){
+    showPortionChoice(category.name,name,price);
+   }else{
+    addToCart(key,name,price);
+   }
+  });
+
+  card.append(info,addButton);
+  container.appendChild(card);
  });
 }
 function showPortionChoice(category,name,price){
- const overlay=document.createElement("div");
- Object.assign(overlay.style,{position:"fixed",inset:"0",background:"rgba(0,0,0,.8)",display:"flex",alignItems:"center",justifyContent:"center",padding:"20px",zIndex:"9999"});
- const box=document.createElement("div");
- Object.assign(box.style,{background:"#222",border:"1px solid #d5a642",borderRadius:"14px",padding:"22px",width:"100%",maxWidth:"340px",color:"white",textAlign:"center"});
- const title=document.createElement("h3");title.textContent=name;title.style.marginTop="0";
- const question=document.createElement("p");question.textContent="Hangi porsiyonu istersiniz?";box.append(title,question);
- function makeChoice(label,portion,finalPrice){
-  const button=document.createElement("button");button.type="button";button.textContent=label+" — "+formatPrice(finalPrice);
-  Object.assign(button.style,{display:"block",width:"100%",marginTop:"10px",padding:"14px",border:"0",borderRadius:"8px",background:"#d5a642",color:"#151515",fontWeight:"bold",fontSize:"15px",cursor:"pointer"});
-  button.addEventListener("click",()=>{
-   const key=category+"::"+name+"::"+portion;
-   addToCart(key,name+" ("+portion+" porsiyon)",finalPrice);overlay.remove();
-  });box.appendChild(button);
- }
- makeChoice("1 porsiyon","1",price);makeChoice("1,5 porsiyon","1,5",price*1.5);
- const cancel=document.createElement("button");cancel.type="button";cancel.textContent="Vazgeç";
- Object.assign(cancel.style,{marginTop:"14px",padding:"10px",border:"1px solid #777",borderRadius:"8px",background:"transparent",color:"white",cursor:"pointer"});
- cancel.addEventListener("click",()=>overlay.remove());
- overlay.addEventListener("click",event=>{if(event.target===overlay)overlay.remove();});
- box.appendChild(cancel);overlay.appendChild(box);document.body.appendChild(overlay);
+  const key=category+"-"+name;
+  const choice=prompt(
+    name+" seçimi:\n1 - Normal porsiyon ("+price+" TL)\n2 - 1,5 porsiyon ("+Math.round(price*1.5)+" TL)\n\n1 veya 2 yaz:"
+  );
+  if(choice==="1"){
+    addToCart(key,name,price);
+  }else if(choice==="2"){
+    addToCart(key+"-15",name+" (1,5 Porsiyon)",Math.round(price*1.5));
+  }
 }
+
 function addToCart(key,name,price){
- const existing=cart.get(key);
- if(existing)existing.quantity+=1;else cart.set(key,{name,price,quantity:1});
- renderCart();
+  if(cart[key]){
+    cart[key].quantity++;
+  }else{
+    cart[key]={name:name,price:price,quantity:1};
+  }
+  renderCart();
 }
+
 function changeQuantity(key,amount){
- const item=cart.get(key);if(!item)return;
- item.quantity+=amount;if(item.quantity<=0)cart.delete(key);renderCart();
+  if(!cart[key])return;
+  cart[key].quantity+=amount;
+  if(cart[key].quantity<=0)delete cart[key];
+  renderCart();
 }
-function removeItem(key){cart.delete(key);renderCart();}
+
+function removeItem(key){
+  delete cart[key];
+  renderCart();
+}
+
 function clearCart(){
- if(cart.size===0)return;
- if(confirm("Sepetteki bütün ürünler silinsin mi?")){cart.clear();renderCart();}
+  cart={};
+  renderCart();
 }
+
 function renderCart(){
- const container=document.getElementById("cartItems");container.replaceChildren();
- if(cart.size===0){const empty=document.createElement("p");empty.className="empty-cart";empty.textContent="Henüz sepete ürün eklemedin.";container.appendChild(empty);}
- let total=0;
- cart.forEach((item,key)=>{
-  const subtotal=item.price*item.quantity;total+=subtotal;
-  const row=document.createElement("div");row.className="cart-item";
-  const info=document.createElement("div"),name=document.createElement("div");name.className="cart-item-name";name.textContent=item.name;
-  const controls=document.createElement("div");controls.className="qty-controls";
-  const minus=document.createElement("button");minus.type="button";minus.className="qty-btn";minus.textContent="−";minus.setAttribute("aria-label",item.name+" adedini azalt");minus.addEventListener("click",()=>changeQuantity(key,-1));
-  const quantity=document.createElement("span");quantity.className="qty-number";quantity.textContent=item.quantity;
-  const plus=document.createElement("button");plus.type="button";plus.className="qty-btn";plus.textContent="+";plus.setAttribute("aria-label",item.name+" adedini artır");plus.addEventListener("click",()=>changeQuantity(key,1));
-  const remove=document.createElement("button");remove.type="button";remove.className="remove-btn";remove.textContent="Sil";remove.addEventListener("click",()=>removeItem(key));
-  controls.append(minus,quantity,plus,remove);info.append(name,controls);
-  const price=document.createElement("div");price.className="cart-item-price";price.textContent=formatPrice(subtotal);
-  row.append(info,price);container.appendChild(row);
- });
- document.getElementById("total").textContent=formatPrice(total);
+  const container=document.getElementById("cartItems");
+  const totalElement=document.getElementById("total");
+  if(!container||!totalElement)return;
+
+  const entries=Object.entries(cart);
+  if(entries.length===0){
+    container.innerHTML="<p>Sepetiniz boş.</p>";
+    totalElement.textContent="0 TL";
+    return;
+  }
+
+  let total=0;
+  container.innerHTML=entries.map(([key,item])=>{
+    const subtotal=item.price*item.quantity;
+    total+=subtotal;
+    return `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong>
+          <p>${item.price} TL × ${item.quantity} = ${subtotal} TL</p>
+        </div>
+        <div class="quantity-controls">
+          <button onclick="changeQuantity('${key}',-1)">−</button>
+          <span>${item.quantity}</span>
+          <button onclick="changeQuantity('${key}',1)">+</button>
+          <button onclick="removeItem('${key}')">Sil</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  totalElement.textContent=total+" TL";
 }
+
 function sendOrder(){
- if(cart.size===0){alert("Önce sepete ürün ekle.");return;}
- const customerName=document.getElementById("customerName").value.trim();
- const customerPhone=document.getElementById("customerPhone").value.trim();
- const customerAddress=document.getElementById("customerAddress").value.trim();
- const orderNote=document.getElementById("orderNote").value.trim();
- if(!customerName||!customerPhone||!customerAddress){alert("Lütfen adınızı, telefonunuzu ve teslimat adresinizi doldurun.");return;}
- const lines=["*HANCAN KEBAP DÖNER - SİPARİŞ*","","*Müşteri:* "+customerName,"*Telefon:* "+customerPhone,"*Adres:* "+customerAddress,"","*Sipariş detayları:*"];
- let total=0;
- cart.forEach(item=>{
-  const subtotal=item.price*item.quantity;total+=subtotal;
-  lines.push("• "+item.name+" x"+item.quantity+" — "+formatPrice(subtotal));
- });
- lines.push("","*TOPLAM: "+formatPrice(total)+"*");
- if(orderNote)lines.push("","*Sipariş notu:* "+orderNote);
- const url="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(lines.join("\n"));
- window.open(url,"_blank","noopener,noreferrer");
+  const entries=Object.values(cart);
+  if(entries.length===0){
+    alert("Kanka, önce sepete ürün ekle.");
+    return;
+  }
+
+  const orderMode=document.querySelector(
+    'input[name="orderMode"]:checked'
+  )?.value||"Paket";
+
+  const payment=document.querySelector(
+    'input[name="payment"]:checked'
+  )?.value||"Belirtilmedi";
+
+  const table=document.querySelector(
+    'input[name="table"]:checked'
+  )?.value||"Belirtilmedi";
+
+  let total=0;
+  let message="*HANCAN KEBAP DÖNER SİPARİŞİ*%0A%0A";
+
+  message+="Sipariş türü: "+orderMode+"%0A";
+  if(orderMode==="Masa"){
+    message+="Masa: "+table+"%0A";
+  }
+  message+="Ödeme yöntemi: "+payment+"%0A%0A";
+  message+="*Ürünler:*%0A";
+
+  entries.forEach(item=>{
+    const subtotal=item.price*item.quantity;
+    total+=subtotal;
+    message+="- "+item.name+" x"+item.quantity+
+      " = "+subtotal+" TL%0A";
+  });
+
+  message+="%0A*Toplam: "+total+" TL*";
+
+  if(payment==="IBAN"){
+    message+="%0A%0AHesap sahibi: Mehmet Yıldız";
+    message+="%0AIBAN: TR63 0015 7000 0000 0158 1639 83";
+  }
+
+  const url="https://wa.me/"+WHATSAPP_NUMBER+
+    "?text="+encodeURIComponent(
+      decodeURIComponent(message.replace(/%0A/g,"\n"))
+    );
+
+  window.open(url,"_blank");
 }
-renderCategories();renderProducts();renderCart();
+
+setupTableOptions();
+renderPaymentOptions();
+renderCategories();
+renderProducts();
+renderCart();
 </script>
 </body>
 </html>
