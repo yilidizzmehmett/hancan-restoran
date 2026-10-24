@@ -149,3 +149,23 @@ footer { text-align: center; padding: 22px; color: var(--muted); border-top: 1px
 @media (max-width: 360px) {
   .products { grid-template-columns: 1fr; }
 }
+.add-button,
+button[data-product],
+.product button {
+  background: linear-gradient(135deg, #d4af37, #f5d76e) !important;
+  color: #111 !important;
+  border: 1px solid #d4af37 !important;
+  border-radius: 7px !important;
+  padding: 8px 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-button:hover,
+button[data-product]:hover,
+.product button:hover {
+  background: #ffe58a !important;
+  transform: translateY(-1px);
+  box-shadow: 0 0 10px #d4af3766;
+}
