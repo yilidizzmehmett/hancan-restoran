@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -6,29 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#151515">
 <title>Hancan Kebap Döner | Menü ve Sipariş</title>
-.category-btn,
-.category-btn.active {
-  background: #d5a642 !important;
-  color: #151515 !important;
-  border: 1px solid #f5d76e !important;
-}
-
-.add-btn,
-.add-button,
-button[data-product] {
-  background: #d5a642 !important;
-  color: #151515 !important;
-  border: 1px solid #f5d76e !important;
-  font-weight: bold !important;
-}.category-button,
-.category-button.active {
-  background: #d5a642 !important;
-  color: #151515 !important;
-  border: 1px solid #f5d76e !important;
-  border-radius: 22px !important;
-  font-weight: bold !important;
-}
-  <style>
+<style>
 :root{--gold:#d5a642;--dark:#151515;--panel:#222;--text:#f7f7f7;--muted:#bcbcbc;--green:#20b65a}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#111;color:var(--text)}
@@ -39,9 +16,8 @@ header p{color:#ddd;margin:8px 0 0}
 .container{width:min(1100px,100%);margin:auto;padding:18px 14px 40px}
 h2{color:var(--gold);margin:10px 0 16px}
 .category-bar{display:flex;gap:9px;overflow-x:auto;padding:5px 2px 14px;margin-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--gold) #292929;position:sticky;top:0;z-index:10;background:#111}
-.category-btn{flex:0 0 auto;border:1px solid #555;border-radius:22px;background:#252525;color:white;padding:12px 16px;font-size:14px;font-weight:bold;cursor:pointer;white-space:nowrap}
-.category-btn.active{background:var(--gold);border-color:var(--gold);color:#171717}
-.category-btn:focus-visible,.add-btn:focus-visible,.qty-btn:focus-visible{outline:2px solid white;outline-offset:3px}
+.category-button,.category-button.active{flex:0 0 auto;border:1px solid #f5d76e!important;border-radius:22px!important;background:#d5a642!important;color:#151515!important;padding:12px 16px;font-size:14px;font-weight:bold;cursor:pointer;white-space:nowrap}
+.category-button.active{background:#f0c75e!important;color:#111!important;box-shadow:0 0 0 2px #d5a642}
 .menu-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 16px}
 .menu-heading h2{margin:0}
 .product-count{color:var(--muted);font-size:13px}
@@ -49,7 +25,7 @@ h2{color:var(--gold);margin:10px 0 16px}
 .product{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;background:var(--panel);border:1px solid #353535;border-radius:12px;padding:14px 12px}
 .product-name{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
 .price{display:block;color:var(--gold);font-weight:bold;margin-top:7px;white-space:nowrap}
-.add-btn{flex:0 0 auto;background:var(--gold);color:#161616;border:0;border-radius:8px;padding:10px 12px;font-weight:bold;cursor:pointer}
+.add-btn{flex:0 0 auto;background:#d5a642!important;color:#151515!important;border:1px solid #f5d76e!important;border-radius:8px;padding:10px 12px;font-weight:bold;cursor:pointer}
 .cart{margin-top:30px;padding:18px;background:#202020;border:1px solid #414141;border-radius:14px}
 .cart h2{margin-top:0}
 .empty-cart{color:var(--muted);font-size:14px}
@@ -58,7 +34,6 @@ h2{color:var(--gold);margin:10px 0 16px}
 .cart-item-price{color:var(--gold);font-weight:bold;white-space:nowrap}
 .qty-controls{display:flex;align-items:center;gap:9px;margin-top:7px}
 .qty-btn{width:30px;height:30px;border:0;border-radius:7px;font-size:18px;font-weight:bold;background:#444;color:white;cursor:pointer}
-.qty-number{min-width:15px;text-align:center}
 .remove-btn{background:transparent;border:0;color:#ff8585;cursor:pointer;font-size:12px;padding:5px 0}
 .cart-total{display:flex;justify-content:space-between;gap:10px;font-size:20px;font-weight:bold;padding:18px 0}
 .cart-total span:last-child{color:var(--gold)}
@@ -69,622 +44,119 @@ h2{color:var(--gold);margin:10px 0 16px}
 .payment-section h3{color:var(--gold);margin:0 0 8px}
 .payment-hint{color:var(--muted);font-size:13px;margin:0 0 12px}
 .payment-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.payment-option{display:flex;align-items:center;gap:10px;min-height:76px;padding:12px;background:#171717;border:1px solid #454545;border-radius:10px;cursor:pointer;text-align:left;color:white;font:inherit}
+.payment-option{display:flex;align-items:center;gap:10px;min-height:64px;padding:12px;background:#171717;border:1px solid #454545;border-radius:10px;cursor:pointer;text-align:left;color:white;font:inherit}
 .payment-option.selected{border:2px solid var(--gold);background:#292317}
-.payment-option input{accent-color:var(--gold);width:18px;height:18px;flex:0 0 auto}
-.payment-logo{min-width:72px;max-width:110px;text-align:center;font-weight:900;font-size:15px;line-height:1.1;padding:8px 5px;border-radius:7px;background:#292929;overflow-wrap:anywhere}
-.logo-cash{color:#42d392}
-.logo-card{color:#5db8ff}
-.logo-multinet{color:#42d9c0}
-.logo-edenred{color:#ff4545}
-.logo-metropol{color:#38a9ff}
-.logo-pluxee{color:#54e879}
-.logo-setcard{color:#267bff}
-.logo-token{color:#ffad43}
-.logo-money{color:#ff742d}
-.payment-name{font-size:13px;font-weight:bold}
-.table-banner{display:none;margin:0 0 18px;padding:14px;border:1px solid var(--gold);border-radius:10px;background:#292317;color:var(--gold);font-weight:bold}
+.payment-option strong{color:var(--gold)}
+.whatsapp-btn{display:block;width:100%;margin-top:14px;padding:15px;border:0;border-radius:9px;background:var(--green);color:white;font-size:16px;font-weight:bold;text-align:center;cursor:pointer}
+.clear-btn{width:100%;margin-top:10px;padding:11px;background:transparent;border:1px solid #666;border-radius:8px;color:#ddd;cursor:pointer}
 .mode-panel{margin:0 0 18px;padding:16px;background:#202020;border:1px solid #414141;border-radius:12px}
 .mode-panel label{display:block;color:var(--gold);font-weight:bold;margin-bottom:8px}
 .mode-panel select{width:100%;padding:12px;border:1px solid #555;border-radius:8px;background:#151515;color:white;font:inherit}
 #tableSelectWrap{margin-top:12px;display:none}
-.whatsapp-btn{display:block;width:100%;margin-top:14px;padding:15px;border:0;border-radius:9px;background:var(--green);color:white;font-size:16px;font-weight:bold;text-align:center;cursor:pointer}
-.clear-btn{width:100%;margin-top:10px;padding:11px;background:transparent;border:1px solid #666;border-radius:8px;color:#ddd;cursor:pointer}
+.table-banner{display:none;margin:0 0 18px;padding:14px;border:1px solid var(--gold);border-radius:10px;background:#292317;color:var(--gold);font-weight:bold}
 footer{padding:24px 12px;text-align:center;color:#999;border-top:1px solid #333;font-size:13px}
-@media(max-width:420px){.payment-options{grid-template-columns:1fr}.payment-option{min-height:64px}}
+@media(max-width:420px){.payment-options{grid-template-columns:1fr}}
 @media(max-width:520px){.products{grid-template-columns:1fr}.product{padding:14px}.container{padding-left:12px;padding-right:12px}}
 @media(min-width:800px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">HC</div>
-  <h1>HANCAN KEBAP DÖNER</h1>
-  <p>Lezzetin doğru adresi</p>
-</header>
+<header><div class="logo">HC</div><h1>HANCAN KEBAP DÖNER</h1><p>Lezzetin doğru adresi</p></header>
 <main class="container">
-  <div id="tableBanner" class="table-banner" role="status"></div>
-  <section class="mode-panel" id="orderModePanel">
-    <label for="orderMode">Sipariş türü</label>
-    <select id="orderMode" onchange="updateOrderMode()">
-      <option value="">Sipariş türünü seçin</option>
-      <option value="table">Masada sipariş</option>
-      <option value="takeaway">Paket sipariş</option>
-    </select>
-    <div id="tableSelectWrap">
-      <label for="tableSelect" style="margin-top:12px">Masa numaranız</label>
-      <select id="tableSelect" onchange="updateTableSelection()">
-        <option value="">Masanızı seçin (1–25)</option>
-      </select>
-    </div>
-  </section>
-  <h2>Menümüz</h2>
-  <nav id="categoryBar" class="category-bar" aria-label="Menü kategorileri"></nav>
-  <section aria-live="polite">
-    <div class="menu-heading">
-      <h2 id="categoryTitle">Pide Çeşitleri</h2>
-      <span id="productCount" class="product-count"></span>
-    </div>
-    <div id="products" class="products"></div>
-  </section>
-  <section class="cart" id="cart">
-    <h2>🛒 Sipariş Sepetim</h2>
-    <div id="cartItems"><p class="empty-cart">Henüz sepete ürün eklemedin.</p></div>
-    <div class="cart-total"><span>Toplam</span><span id="total">0 TL</span></div>
-    <div class="order-fields">
-      <input id="customerName" type="text" placeholder="Adınız soyadınız" autocomplete="name">
-      <input id="customerPhone" type="tel" placeholder="Telefon numaranız" autocomplete="tel">
-      <input id="customerAddress" type="text" placeholder="Teslimat adresiniz" autocomplete="street-address">
-      <textarea id="orderNote" placeholder="Sipariş notunuz (isteğe bağlı)"></textarea>
-    </div>
-    <section class="payment-section" aria-labelledby="paymentTitle">
-      <h3 id="paymentTitle">Ödeme yöntemi</h3>
-      <p class="payment-hint">Ödeme yapacağınız yöntemi seçin.</p>
-      <div id="paymentOptions" class="payment-options"></div>
-    </section>
-    <button class="whatsapp-btn" onclick="sendOrder()">WhatsApp ile Sipariş Ver</button>
-    <button class="clear-btn" onclick="clearCart()">Sepeti Temizle</button>
-  </section>
-</main>
-<footer>Hancan Kebap Döner · Afiyet olsun!</footer>
+<div id="tableBanner" class="table-banner" role="status"></div>
+<section class="mode-panel">
+<label for="orderMode">Sipariş türü</label>
+<select id="orderMode"><option value="">Sipariş türünü seçin</option><option value="Masa">Masada sipariş</option><option value="Paket Servis">Paket sipariş</option></select>
+<div id="tableSelectWrap"><label for="tableSelect" style="margin-top:12px">Masa numaranız</label><select id="tableSelect"><option value="">Masanızı seçin</option></select></div>
+</section>
+<h2>Menümüz</h2><nav id="categoryBar" class="category-bar" aria-label="Menü kategorileri"></nav>
+<section aria-live="polite"><div class="menu-heading"><h2 id="categoryTitle">Pide Çeşitleri</h2><span id="productCount" class="product-count"></span></div><div id="products" class="products"></div></section>
+<section class="cart"><h2>🛒 Sipariş Sepetim</h2><div id="cartItems"><p class="empty-cart">Henüz sepete ürün eklemedin.</p></div><div class="cart-total"><span>Toplam</span><span id="total">0 TL</span></div>
+<div class="order-fields"><input id="customerName" type="text" placeholder="Adınız soyadınız" autocomplete="name"><input id="customerPhone" type="tel" placeholder="Telefon numaranız" autocomplete="tel"><input id="customerAddress" type="text" placeholder="Teslimat adresiniz" autocomplete="street-address"><textarea id="orderNote" placeholder="Sipariş notunuz (isteğe bağlı)"></textarea></div>
+<section class="payment-section"><h3>Ödeme yöntemi</h3><p class="payment-hint">Ödeme yapacağınız yöntemi seçin.</p><div id="paymentOptions" class="payment-options"></div></section>
+<button class="whatsapp-btn" id="sendOrder">WhatsApp ile Sipariş Ver</button><button class="clear-btn" id="clearCart">Sepeti Temizle</button></section>
+</main><footer>Hancan Kebap Döner · Afiyet olsun!</footer>
 <script>
 const categories = [
-  {name:"Pide Çeşitleri",items:[
-    ["Lahmacun",120],["Kıymalı Pide",200],["Kıymalı Kaşarlı",230],
-    ["Kuşbaşılı",250],["Kuşbaşılı Kaşarlı",280],["Mevlana Pide",270],
-    ["Bıçak Arası Kıyma",280],["Kaşarlı Pide",230],
-    ["Kaşarlı Yumurtalı",260],["Kavurmalı Kaşarlı",270]
-  ]},
-  {name:"Döner Çeşitleri",items:[
-    ["Ekmek Arası (100 GR)",150],["Klasik (100 GR)",150],
-    ["Hatay Soslu (100 GR)",150],["Zurna Döner (130 GR)",200],
-    ["Pilav Üstü (100 GR)",200],["Pilav Üstü (150 GR)",240],
-    ["Porsiyon Döner (150 GR)",250],["Porsiyon Döner (200 GR)",290]
-  ]},
-  {name:"Kebap ve Izgara",items:[
-    ["Burdur Şiş",450],["Adana Kebap",450],["Kuzu Şiş",500],
-    ["Ciğer Şiş",500],["Tavuk Şiş",350],["Tavuk Kanat",360],
-    ["Patlıcanlı Kebap",450],["Domatesli Kebap",450],
-    ["Sarma Beyti",500],["Altı Ezmeli",450],["Yoğurtlu Kebap",500],
-    ["Tavuk Kelebek",340],["Tavuk Pirzola",340],
-    ["4 Kişilik Hancan Karışık Kebap",2200],
-    ["Tek Kişilik Karışık Specİal",900],["Izgara Köfte",450]
-  ]},
-  {name:"Dürüm Çeşitleri",items:[
-    ["Adana Dürüm",220],["Urfa Dürüm",220],
-    ["Lahmacun Arası Adana",350],["Tavuk Şiş",200],
-    ["Kuzu Şiş",290],["Ciğer Şiş",290],["Köfte Dürüm",220],
-    ["Yarım Ekmek Köfte",220],
-    ["Specİal Karışık Dürüm (Adana-Kuzu)",450]
-  ]},
-  {name:"Kiloluk Tavuk ve Izgara",items:[
-    ["Kanat 1 KG",699],["Kelebek 1 KG",499],["Pirzola 1 KG",499],
-    ["Tavuk Şiş 1 KG",649],["5 Şiş Adana + 5 Şiş Tavuk",1700],
-    ["Izgara Köfte 1 KG",1400]
-  ]},
-  {name:"Çorba Çeşitleri",items:[
-    ["Mercimek Çorbası",200],["Tavuk Çorbası",200],
-    ["Kelle Paça Çorbası",250],["İşkembe Çorbası",250]
-  ]},
-  {name:"Burgerler",items:[
-    ["Et Hamburger",350],["Tavuk Hamburger",250]
-  ]},
-  {name:"Saç Kavurmalar",items:[
-    ["Et Saç Kavurma",560],["Tavuk Saç Kavurma",360]
-  ]},
-  {name:"Güveç Çeşitleri",items:[
-    ["Güveçte Köfte",450],["Güveçte Kuzu",560],
-    ["Güveçte Tavuk",360]
-  ]},
-  {name:"Tatlılar",items:[
-    ["Fırın Sütlaç",80],["Supangle",80],["Sade Künefe",200],
-    ["Fıstıklı Künefe",250],["Kare Katmer",250],
-    ["Gül Katmer",250],["Fıstıklı Burma",250]
-  ]},
-  {name:"İçecek Çeşitleri",items:[
-    ["Coca cola 33cl.",80],["Coca cola Zero 33cl.",80],
-    ["Fanta 33cl.",80],["Sprite 33 cl.",80],
-    ["Fuse tea Karpuz 33cl.",80],["Fuse tea Şeftali 33cl.",80],
-    ["Fuse tea Mango 33cl.",80],["Fuse tea Limon 33cl.",80],
-    ["Fuse tea Çilek 33cl.",80],["Cappy şeftali 33cl.",80],
-    ["Cappy karışık 33cl.",80],["Cappy vişne 33cl.",80],
-    ["Sütaş ayran 27cl.",50],["Acılı şalgam 33cl.",50],
-    ["Acısız şalgam 33cl.",50],["Su 0.5",20],
-    ["1 litre kola",100],["1 litre fanta",100],
-    ["1 litre sprite",100],["1 litre ayran",80],
-    ["1 litre acılı şalgam",80],["1 litre acısız şalgam",80],
-    ["2.5 litre kola",130],["2.5 litre fanta",130]
-  ]},
-  {name:"Mezeler",items:[
-    ["Humus",200],["Mutebbel",200],["Babağannuş",200],
-    ["Acı Ezme",150],["Haydari",150],["Köpoğlu",200]
-  ]}
+{name:"Pide Çeşitleri",items:[["Lahmacun",120],["Kıymalı Pide",200],["Kıymalı Kaşarlı",230],["Kuşbaşılı",250],["Kuşbaşılı Kaşarlı",280],["Mevlana Pide",270],["Bıçak Arası Kıyma",280],["Kaşarlı Pide",230],["Kaşarlı Yumurtalı",260],["Kavurmalı Kaşarlı",270]]},
+{name:"Döner Çeşitleri",items:[["Ekmek Arası (100 GR)",150],["Klasik (100 GR)",150],["Hatay Soslu (100 GR)",150],["Zurna Döner (130 GR)",200],["Pilav Üstü (100 GR)",200],["Pilav Üstü (150 GR)",240],["Porsiyon Döner (150 GR)",250],["Porsiyon Döner (200 GR)",290]]},
+{name:"Kebap ve Izgara",items:[["Burdur Şiş",450],["Adana Kebap",450],["Kuzu Şiş",500],["Ciğer Şiş",500],["Tavuk Şiş",350],["Tavuk Kanat",360],["Patlıcanlı Kebap",450],["Domatesli Kebap",450],["Sarma Beyti",500],["Altı Ezmeli",450],["Yoğurtlu Kebap",500],["Tavuk Kelebek",340],["Tavuk Pirzola",340],["4 Kişilik Hancan Karışık Kebap",2200],["Tek Kişilik Karışık Special",900],["Izgara Köfte",450]]},
+{name:"Dürüm Çeşitleri",items:[["Adana Dürüm",220],["Urfa Dürüm",220],["Lahmacun Arası Adana",350],["Tavuk Şiş",200],["Kuzu Şiş",290],["Ciğer Şiş",290],["Köfte Dürüm",220],["Yarım Ekmek Köfte",220],["Special Karışık Dürüm (Adana-Kuzu)",450]]},
+{name:"Kiloluk Tavuk ve Izgara",items:[["Kanat 1 KG",699],["Kelebek 1 KG",499],["Pirzola 1 KG",499],["Tavuk Şiş 1 KG",649],["5 Şiş Adana + 5 Şiş Tavuk",1700],["Izgara Köfte 1 KG",1400]]},
+{name:"Çorba Çeşitleri",items:[["Mercimek Çorbası",200],["Tavuk Çorbası",200],["Kelle Paça Çorbası",250],["İşkembe Çorbası",250]]},
+{name:"Burgerler",items:[["Et Hamburger",350],["Tavuk Hamburger",250]]},
+{name:"Saç Kavurmalar",items:[["Et Saç Kavurma",560],["Tavuk Saç Kavurma",360]]},
+{name:"Güveç Çeşitleri",items:[["Güveçte Köfte",450],["Güveçte Kuzu",560],["Güveçte Tavuk",360]]},
+{name:"Tatlılar",items:[["Fırın Sütlaç",80],["Supangle",80],["Sade Künefe",200],["Fıstıklı Künefe",250],["Kare Katmer",250],["Gül Katmer",250],["Fıstıklı Burma",250]]},
+{name:"İçecek Çeşitleri",items:[["Coca cola 33cl.",80],["Coca cola Zero 33cl.",80],["Fanta 33cl.",80],["Sprite 33 cl.",80],["Fuse tea Karpuz 33cl.",80],["Fuse tea Şeftali 33cl.",80],["Fuse tea Mango 33cl.",80],["Fuse tea Limon 33cl.",80],["Fuse tea Çilek 33cl.",80],["Cappy şeftali 33cl.",80],["Cappy karışık 33cl.",80],["Cappy vişne 33cl.",80],["Sütaş ayran 27cl.",50],["Acılı şalgam 33cl.",50],["Acısız şalgam 33cl.",50],["Su 0.5",20],["1 litre kola",100],["1 litre fanta",100],["1 litre sprite",100],["1 litre ayran",80],["1 litre acılı şalgam",80],["1 litre acısız şalgam",80],["2.5 litre kola",130],["2.5 litre fanta",130]]},
+{name:"Mezeler",items:[["Humus",200],["Mutebbel",200],["Babağannuş",200],["Acı Ezme",150],["Haydari",150],["Köpoğlu",200]]}
 ];
-
-const WHATSAPP_NUMBER = "905451546507";
-
-const paymentMethods = [
-  {name:"Nakit",detail:"₺ NAKİT",className:"logo-cash"},
-  {name:"Banka / Kredi Kartı",detail:"BANKA / KREDİ KARTI",className:"logo-card"},
-  {name:"Multinet",detail:"MULTINET",className:"logo-multinet"},
-  {name:"Edenred Ticket",detail:"EDENRED TICKET",className:"logo-ticket"},
-  {name:"Metropol",detail:"METROPOL",className:"logo-metropol"},
-  {name:"Pluxee (Sodexo)",detail:"PLUXEE",className:"logo-pluxee"},
-  {name:"Setcard",detail:"SETCARD",className:"logo-setcard"},
-  {name:"Token flex",detail:"TOKEN FLEX",className:"logo-token"},
-  {name:"MoneyYemek",detail:"MONEY YEMEK",className:"logo-money"},
-  {name:"IBAN ile Havale/EFT",detail:"IBAN / HAVALE",className:"logo-iban"}
-];
-
-const IBAN_OWNER = "Mehmet Yıldız";
-const IBAN_NUMBER = "TR63 0015 7000 0000 0158 1639 83";
-
-const params = new URLSearchParams(window.location.search);
-const rawTable = parseInt(params.get("masa"),10);
-const tableNumber = Number.isInteger(rawTable) && rawTable >= 1 && rawTable <= 25
-  ? rawTable
-  : null;
-
-let selectedPayment = "";
-let orderMode = "";
-let selectedCategory = 0;
-
-const portionCategories = [
-  "Pide Çeşitleri",
-  "Kebap ve Izgara",
-  "Dürüm Çeşitleri",
-  "Saç Kavurmalar",
-  "Güveç Çeşitleri"
-];
-
-const cart = new Map();
-
-function formatPrice(price) {
-  return Number(price).toLocaleString("tr-TR") + " TL";
+const WHATSAPP_NUMBER="905451546507";
+const paymentMethods=["Nakit","Banka / Kredi Kartı","Multinet","Edenred Ticket","Metropol","Pluxee (Sodexo)","Setcard","Token flex","MoneyYemek","IBAN ile Havale/EFT"];
+const IBAN_OWNER="Mehmet Yıldız", IBAN_NUMBER="TR63 0015 7000 0000 0158 1639 83";
+const portionCategories=["Pide Çeşitleri","Kebap ve Izgara","Dürüm Çeşitleri","Saç Kavurmalar","Güveç Çeşitleri"];
+let selectedCategory=0,selectedPayment="",orderMode="";
+const cart=new Map();
+const $=id=>document.getElementById(id);
+const money=n=>Number(n).toLocaleString("tr-TR")+" TL";
+function renderCategories(){
+ const bar=$("categoryBar");
+ bar.innerHTML=categories.map((c,i)=>`<button type="button" class="category-button ${i===selectedCategory?"active":""}" data-category="${i}">${c.name}</button>`).join("");
+ bar.querySelectorAll("[data-category]").forEach(b=>b.addEventListener("click",()=>{selectedCategory=Number(b.dataset.category);renderCategories();renderProducts();}));
 }
-
-function renderPaymentOptions() {
-  const container = document.getElementById("paymentOptions");
-  if (!container) return;
-
-  container.innerHTML = paymentMethods.map(method => `
-    <button type="button"
-      class="payment-option ${method.className}"
-      data-payment="${method.name}">
-      ${method.detail}
-    </button>
-  `).join("");
-
-  container.querySelectorAll("[data-payment]").forEach(button => {
-    button.addEventListener("click", () => {
-      selectedPayment = button.dataset.payment;
-
-      container.querySelectorAll("[data-payment]").forEach(item => {
-        item.classList.toggle("selected", item === button);
-      });
-
-      const ibanInfo = document.getElementById("ibanInfo");
-      if (ibanInfo) {
-        ibanInfo.style.display =
-          selectedPayment === "IBAN ile Havale/EFT" ? "block" : "none";
-      }
-    });
-  });
-
-  const ibanInfo = document.getElementById("ibanInfo");
-  if (ibanInfo) ibanInfo.style.display = "none";
+function renderProducts(){
+ const cat=categories[selectedCategory],box=$("products");
+ $("categoryTitle").textContent=cat.name;$("productCount").textContent=cat.items.length+" ürün";
+ box.innerHTML=cat.items.map(([n,p])=>`<article class="product"><div><div class="product-name">${n}</div><strong class="price">${money(p)}</strong></div><button class="add-btn" type="button" data-name="${encodeURIComponent(n)}" data-price="${p}">Ekle +</button></article>`).join("");
+ box.querySelectorAll(".add-btn").forEach(b=>b.addEventListener("click",()=>addItem(decodeURIComponent(b.dataset.name),Number(b.dataset.price),cat.name)));
 }
-
-function setupTableOptions() {
-  const select = document.getElementById("tableSelect");
-  if (!select) return;
-
-  select.innerHTML = '<option value="">Masa seçin</option>';
-
-  for (let i = 1; i <= 25; i++) {
-    const option = document.createElement("option");
-    option.value = String(i);
-    option.textContent = "Masa " + i;
-    select.appendChild(option);
-  }
-
-  if (tableNumber) {
-    select.value = String(tableNumber);
-  }
+function addItem(name,price,category,portion="Normal"){
+ const key=category+"::"+name+"::"+portion;
+ if(cart.has(key))cart.get(key).quantity++;else cart.set(key,{name,price,category,portion,quantity:1});
+ renderCart();
 }
-
-function updateOrderMode() {
-  const modeSelect = document.getElementById("orderMode");
-  if (!modeSelect) return;
-
-  orderMode = modeSelect.value;
-
-  const tableArea = document.getElementById("tableArea");
-  const deliveryArea = document.getElementById("deliveryArea");
-
-  if (tableArea) {
-    tableArea.style.display = orderMode === "Masa" ? "block" : "none";
-  }
-
-  if (deliveryArea) {
-    deliveryArea.style.display = orderMode === "Paket Servis" ? "block" : "none";
-  }
+function renderCart(){
+ let total=0,count=0;
+ $("cartItems").innerHTML=cart.size?Array.from(cart.entries()).map(([key,item])=>{const sub=item.price*item.quantity;total+=sub;count+=item.quantity;return `<div class="cart-item"><div class="cart-item-name"><strong>${item.name}</strong><div class="cart-item-price">${item.portion} · ${money(item.price)}</div><button class="remove-btn" data-remove="${encodeURIComponent(key)}">Kaldır</button></div><div class="qty-controls"><button class="qty-btn" data-minus="${encodeURIComponent(key)}">−</button><strong>${item.quantity}</strong><button class="qty-btn" data-plus="${encodeURIComponent(key)}">+</button></div></div>`}).join(""):'<p class="empty-cart">Henüz sepete ürün eklemedin.</p>';
+ $("total").textContent=money(total);
+ $("cartItems").querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>changeQty(decodeURIComponent(b.dataset.minus),-1));
+ $("cartItems").querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>changeQty(decodeURIComponent(b.dataset.plus),1));
+ $("cartItems").querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{cart.delete(decodeURIComponent(b.dataset.remove));renderCart()});
 }
-
-function updateTableSelection() {
-  const select = document.getElementById("tableSelect");
-  if (select && select.value) {
-    select.dataset.selected = select.value;
-  }
+function changeQty(key,delta){if(!cart.has(key))return;const x=cart.get(key);x.quantity+=delta;if(x.quantity<=0)cart.delete(key);renderCart()}
+function renderPayments(){
+ $("paymentOptions").innerHTML=paymentMethods.map((m,i)=>`<button type="button" class="payment-option" data-payment="${i}"><strong>${m}</strong></button>`).join("");
+ $("paymentOptions").querySelectorAll("[data-payment]").forEach(b=>b.onclick=()=>{selectedPayment=paymentMethods[Number(b.dataset.payment)];$("paymentOptions").querySelectorAll(".payment-option").forEach(x=>x.classList.toggle("selected",x===b));});
 }
-
-function renderCategories() {
-  const container = document.getElementById("categoryBar");
-  if (!container) return;
-
-  container.innerHTML = categories.map((category, index) => `
-    <button type="button"
-      class="category-button ${index === selectedCategory ? "active" : ""}"
-      data-category="${index}">
-      ${category.name}
-    </button>
-  `).join("");
-
-  container.querySelectorAll("[data-category]").forEach(button => {
-    button.addEventListener("click", () => {
-      selectedCategory = Number(button.dataset.category);
-      renderCategories();
-      renderProducts();
-    });
-  });
+function sendOrder(){
+ if(!cart.size){alert("Önce sepete ürün eklemelisin.");return}
+ const mode=$("orderMode").value,name=$("customerName").value.trim(),phone=$("customerPhone").value.trim(),address=$("customerAddress").value.trim(),table=$("tableSelect").value;
+ if(!mode){alert("Lütfen sipariş türünü seç.");return}
+ if(!name){alert("Lütfen adınızı yazın.");$("customerName").focus();return}
+ if(mode==="Masa"&&!table){alert("Lütfen masa numaranızı seçin.");return}
+ if(mode==="Paket Servis"&&(!phone||!address)){alert("Paket sipariş için telefon ve adresi doldurun.");return}
+ if(!selectedPayment){alert("Lütfen ödeme yöntemini seçin.");return}
+ const lines=["🍽️ *HANCAN KEBAP DÖNER — SİPARİŞ*","","👤 Müşteri: "+name,"📞 Telefon: "+(phone||"Belirtilmedi"),"📍 Sipariş türü: "+mode];
+ if(mode==="Masa")lines.push("🪑 Masa: "+table);
+ if(mode==="Paket Servis")lines.push("🏠 Adres: "+address);
+ lines.push("","🛒 *SİPARİŞ DETAYI*");let total=0;
+ for(const item of cart.values()){const sub=item.price*item.quantity;total+=sub;lines.push(`• ${item.name} (${item.portion}) x${item.quantity} — ${money(sub)}`)}
+ lines.push("","💳 Ödeme: "+selectedPayment,"💰 *TOPLAM: "+money(total)+"*");
+ const note=$("orderNote").value.trim();if(note)lines.push("📝 Not: "+note);
+ if(selectedPayment==="IBAN ile Havale/EFT")lines.push("Alıcı: "+IBAN_OWNER,"IBAN: "+IBAN_NUMBER);
+ lines.push("","Afiyet olsun!");
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(lines.join("\n")),"_blank");
 }
-
-function renderProducts() {
-  const container = document.getElementById("products");
-  if (!container) return;
-
-  const category = categories[selectedCategory];
-  if (!category) return;
-
-  container.innerHTML = category.items.map(([name, price]) => `
-    <div class="product">
-      <div class="product-info">
-        <span class="product-name">${name}</span>
-        <strong class="product-price">${formatPrice(price)}</strong>
-      </div>
-      <button type="button" class="add-btn"
-        data-product="${encodeURIComponent(name)}"
-        data-price="${price}">
-        Ekle +
-      </button>
-    </div>
-  `).join("");
-
-  container.querySelectorAll("[data-product]").forEach(button => {
-    button.addEventListener("click", () => {
-      const name = decodeURIComponent(button.dataset.product);
-      const price = Number(button.dataset.price);
-
-      if (portionCategories.includes(category.name)) {
-        showPortionChoice(name, price, category.name);
-      } else {
-        addToCart(name, price, category.name, "Normal");
-      }
-    });
-  });
+function clearCart(){if(cart.size&&confirm("Sepetteki tüm ürünler silinsin mi?")){cart.clear();renderCart()}}
+function setup(){
+ for(let i=1;i<=25;i++){const o=document.createElement("option");o.value=String(i);o.textContent="Masa "+i;$("tableSelect").appendChild(o)}
+ $("orderMode").addEventListener("change",()=>{orderMode=$("orderMode").value;$("tableSelectWrap").style.display=orderMode==="Masa"?"block":"none";$("customerAddress").style.display=orderMode==="Masa"?"none":"block";});
+ $("sendOrder").addEventListener("click",sendOrder);$("clearCart").addEventListener("click",clearCart);
+ renderPayments();renderCategories();renderProducts();renderCart();
+ const params=new URLSearchParams(location.search),t=Number(params.get("masa"));
+ if(Number.isInteger(t)&&t>=1&&t<=25){$("orderMode").value="Masa";$("tableSelect").value=String(t);$("tableSelectWrap").style.display="block";}
 }
-  function showPortionChoice(name, price, categoryName) {
-  const oldModal = document.getElementById("portionModal");
-  if (oldModal) oldModal.remove();
-
-  const modal = document.createElement("div");
-  modal.id = "portionModal";
-
-  modal.style.cssText = `
-    position:fixed; inset:0; z-index:9999;
-    background:rgba(0,0,0,.8);
-    display:flex; align-items:center; justify-content:center;
-    padding:20px;
-  `;
-
-  modal.innerHTML = `
-    <div style="
-      background:#171717; color:white; width:100%; max-width:380px;
-      padding:25px; border-radius:18px; border:1px solid #c9a34a;
-      text-align:center; box-shadow:0 10px 40px #0008;">
-      <h2 style="color:#d7b45a;margin:0 0 8px;">Porsiyon Seçimi</h2>
-      <p style="margin:0 0 20px;">${name}</p>
-
-      <button id="normalPortion" style="
-        width:100%; padding:15px; margin-bottom:10px;
-        background:#c9a34a; color:#111; border:0;
-        border-radius:10px; font-weight:bold; font-size:16px;">
-        Normal Porsiyon — ${formatPrice(price)}
-      </button>
-
-      <button id="largePortion" style="
-        width:100%; padding:15px; margin-bottom:10px;
-        background:#292929; color:#e4c36b; border:1px solid #c9a34a;
-        border-radius:10px; font-weight:bold; font-size:16px;">
-        1,5 Porsiyon — ${formatPrice(price * 1.5)}
-      </button>
-
-      <button id="cancelPortion" style="
-        background:transparent; color:#ccc; border:0;
-        padding:10px; cursor:pointer;">Vazgeç</button>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  document.getElementById("normalPortion").onclick = () => {
-    addToCart(name, price, categoryName, "Normal");
-    modal.remove();
-  };
-
-  document.getElementById("largePortion").onclick = () => {
-    addToCart(name, price * 1.5, categoryName, "1,5 Porsiyon");
-    modal.remove();
-  };
-
-  document.getElementById("cancelPortion").onclick = () => modal.remove();
-
-  modal.addEventListener("click", event => {
-    if (event.target === modal) modal.remove();
-  });
-}
-
-function addToCart(name, price, categoryName, portion) {
-  const key = `${categoryName}::${name}::${portion}`;
-
-  if (cart.has(key)) {
-    const item = cart.get(key);
-    item.quantity += 1;
-  } else {
-    cart.set(key, {
-      name,
-      price,
-      category: categoryName,
-      portion,
-      quantity: 1
-    });
-  }
-
-  renderCart();
-}
-
-function changeQuantity(key, change) {
-  if (!cart.has(key)) return;
-
-  const item = cart.get(key);
-  item.quantity += change;
-
-  if (item.quantity <= 0) {
-    cart.delete(key);
-  }
-
-  renderCart();
-}
-
-function renderCart() {
-  const container = document.getElementById("cartItems");
-  const totalElement = document.getElementById("cartTotal");
-  const countElement = document.getElementById("cartCount");
-
-  if (!container) return;
-
-  let total = 0;
-  let count = 0;
-
-  if (cart.size === 0) {
-    container.innerHTML = '<p style="color:#999;">Sepetiniz boş.</p>';
-  } else {
-    container.innerHTML = Array.from(cart.entries()).map(([key, item]) => {
-      const itemTotal = item.price * item.quantity;
-      total += itemTotal;
-      count += item.quantity;
-
-      return `
-        <div class="cart-item" style="
-          display:flex; justify-content:space-between; align-items:center;
-          gap:10px; padding:12px 0; border-bottom:1px solid #333;">
-          <div style="flex:1;">
-            <strong>${item.name}</strong>
-            <div style="font-size:13px;color:#c9a34a;">
-              ${item.portion} · ${formatPrice(item.price)}
-            </div>
-            <div style="font-weight:bold;margin-top:4px;">
-              ${formatPrice(itemTotal)}
-            </div>
-          </div>
-
-          <div style="display:flex;align-items:center;gap:8px;">
-            <button type="button"
-              data-minus="${encodeURIComponent(key)}"
-              style="padding:6px 11px;">−</button>
-            <strong>${item.quantity}</strong>
-            <button type="button"
-              data-plus="${encodeURIComponent(key)}"
-              style="padding:6px 11px;">+</button>
-          </div>
-        </div>
-      `;
-    }).join("");
-
-    container.querySelectorAll("[data-minus]").forEach(button => {
-      button.addEventListener("click", () => {
-        changeQuantity(decodeURIComponent(button.dataset.minus), -1);
-      });
-    });
-
-    container.querySelectorAll("[data-plus]").forEach(button => {
-      button.addEventListener("click", () => {
-        changeQuantity(decodeURIComponent(button.dataset.plus), 1);
-      });
-    });
-  }
-
-  if (totalElement) totalElement.textContent = formatPrice(total);
-  if (countElement) countElement.textContent = String(count);
-}
-
-function clearCart() {
-  if (cart.size === 0) return;
-
-  if (confirm("Sepetteki tüm ürünler silinsin mi?")) {
-    cart.clear();
-    renderCart();
-  }
-}
-
-function sendOrder() {
-  if (cart.size === 0) {
-    alert("Kanka, önce sepete ürün eklemelisin.");
-    return;
-  }
-
-  const modeSelect = document.getElementById("orderMode");
-  const mode = modeSelect ? modeSelect.value : "";
-
-  if (!mode) {
-    alert("Lütfen sipariş türünü seç.");
-    return;
-  }
-
-  const nameInput = document.getElementById("customerName");
-  const phoneInput = document.getElementById("customerPhone");
-  const addressInput = document.getElementById("customerAddress");
-  const tableSelect = document.getElementById("tableSelect");
-
-  const customerName = nameInput ? nameInput.value.trim() : "";
-  const customerPhone = phoneInput ? phoneInput.value.trim() : "";
-  const customerAddress = addressInput ? addressInput.value.trim() : "";
-
-  if (!customerName) {
-    alert("Lütfen adını yaz.");
-    if (nameInput) nameInput.focus();
-    return;
-  }
-
-  if (mode === "Masa" && !(tableSelect && tableSelect.value)) {
-    alert("Lütfen masa numaranı seç.");
-    if (tableSelect) tableSelect.focus();
-    return;
-  }
-
-  if (mode === "Paket Servis") {
-    if (!customerPhone || !customerAddress) {
-      alert("Paket servis için telefon ve adres bilgilerini doldur.");
-      return;
-    }
-  }
-
-  if (!selectedPayment) {
-    alert("Lütfen ödeme yöntemini seç.");
-    return;
-  }
-
-  const lines = [
-    "🍽️ *HANCAN KEBAP DÖNER — SİPARİŞ*",
-    "",
-    "👤 Müşteri: " + customerName,
-    "📞 Telefon: " + (customerPhone || "Belirtilmedi"),
-    "📍 Sipariş türü: " + mode
-  ];
-
-  if (mode === "Masa") {
-    lines.push("🪑 Masa: " + tableSelect.value);
-  }
-
-  if (mode === "Paket Servis") {
-    lines.push("🏠 Adres: " + customerAddress);
-  }
-
-  lines.push("", "🛒 *SİPARİŞ DETAYI*");
-
-  let total = 0;
-
-  for (const item of cart.values()) {
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
-
-    lines.push(
-      `• ${item.name} (${item.portion}) x${item.quantity} — ${formatPrice(itemTotal)}`
-    );
-  }
-
-  lines.push(
-    "",
-    "💳 Ödeme: " + selectedPayment,
-    "💰 *TOPLAM: " + formatPrice(total) + "*"
-  );
-
-  if (selectedPayment === "IBAN ile Havale/EFT") {
-    lines.push(
-      "",
-      "Alıcı: " + IBAN_OWNER,
-      "IBAN: " + IBAN_NUMBER
-    );
-  }
-
-  lines.push("", "Afiyet olsun!");
-
-  const url =
-    "https://wa.me/" + WHATSAPP_NUMBER +
-    "?text=" + encodeURIComponent(lines.join("\n"));
-
-  window.open(url, "_blank");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  renderPaymentOptions();
-  setupTableOptions();
-  renderCategories();
-  renderProducts();
-  renderCart();
-
-  const modeSelect = document.getElementById("orderMode");
-  if (modeSelect) {
-    modeSelect.addEventListener("change", updateOrderMode);
-    updateOrderMode();
-  }
-
-  const tableSelect = document.getElementById("tableSelect");
-  if (tableSelect) {
-    tableSelect.addEventListener("change", updateTableSelection);
-  }
-
-  const orderButton = document.getElementById("sendOrder");
-  if (orderButton) {
-    orderButton.addEventListener("click", sendOrder);
-  }
-
-  const clearButton = document.getElementById("clearCart");
-  if (clearButton) {
-    clearButton.addEventListener("click", clearCart);
-  }
-});
-
+document.addEventListener("DOMContentLoaded",setup);
 </script>
 </body>
 </html>
